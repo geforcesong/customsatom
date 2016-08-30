@@ -1,0 +1,21 @@
+﻿<telerik:RadWindow x:Class="ProTemplate.UserControls.RadWindows.VerifyDetailInfoWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    Style="{StaticResource CommonRadWindowStyle}" telerik:Theming.Theme="Office_Blue" WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d" Header="校验详细信息"
+    Height="400" Width="600">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <sdk:DataGrid AutoGenerateColumns="False" x:Name="gdResult">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Header="" Binding="{Binding Title}" Foreground="Red" FontWeight="Bold" Width="*" />
+                <sdk:DataGridTextColumn Header="" Binding="{Binding Msg1}" Foreground="Green" Width="*" />
+                <sdk:DataGridTextColumn Header="" Binding="{Binding Msg2}" Foreground="Blue" Width="*" />
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+    </Grid>
+</telerik:RadWindow>

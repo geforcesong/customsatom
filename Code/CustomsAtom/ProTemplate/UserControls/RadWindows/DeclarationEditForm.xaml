@@ -1,0 +1,690 @@
+﻿<telerik:RadWindow x:Class="ProTemplate.UserControls.RadWindows.DeclarationEditForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input"
+    xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+    xmlns:my="clr-namespace:ProTemplate.UserControls"
+    xmlns:uc="clr-namespace:ProTemplate.UserControls.CustomControl" PreviewClosed="RadWindow_PreviewClosed"
+    mc:Ignorable="d" Header="报关单明细" WindowStartupLocation="CenterScreen" Closed="RadWindow_Closed"
+    Height="610" Width="720" telerik:Theming.Theme="Office_Blue">
+    <telerik:RadWindow.Resources>
+        <Style TargetType="TextBlock" x:Key="AddDeclarationLable">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="70" />
+            <Setter Property="FontFamily" Value="SimHei" />
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="AddDeclarationInputBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="260" />
+            <Setter Property="FontFamily" Value="SimHei" />
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="AddDeclarationInputBoxShort">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="FontFamily" Value="SimHei" />
+        </Style>
+
+        <Style TargetType="input:AutoCompleteBox" x:Key="AddDeclarationAutoCompleteBoxStyle">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="260" />
+            <Setter Property="FontFamily" Value="SimHei" />
+        </Style>
+    </telerik:RadWindow.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <my:EditWindowToolBar x:Name="toolBar" Grid.Row="0" IsNew="False" SaveAndClose="toolBar_SaveAndClose" Close="toolBar_Close" />
+        <telerik:RadTabControl x:Name="rtbAll" Grid.Row="1" telerik:Theming.Theme="Office_Blue">
+            <telerik:RadTabItem Header="基本信息" IsSelected="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="29" />
+                        <RowDefinition Height="29" />
+                        <RowDefinition Height="29" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="客户名称：" Style="{StaticResource AddDeclarationLable}" />
+                        <input:AutoCompleteBox x:Name="acbCustomer" Text="{Binding CustomerName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCustomer_Populating" ValueMemberPath="Name" >
+                            <input:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </input:AutoCompleteBox.ItemTemplate>
+                        </input:AutoCompleteBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="接收日期：" Style="{StaticResource AddDeclarationLable}" />
+                        <sdk:DatePicker x:Name="dpReceiveDate"  VerticalAlignment="Center" Width="260" SelectedDate="{Binding ReceivedDate,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock Text="海关编号：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox x:Name="tbDeclarationNumber" MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding DeclarationNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="预录入编号：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox x:Name="tbPreEntryNumber" MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding PreEntryNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="提运单号：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbBillNumber" MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding BillNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="批准文号：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbApprovalNumber" MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding ApprovalNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                        <CheckBox Content="商检" VerticalAlignment="Center" IsChecked="{Binding IsShangJian}" IsEnabled="False" />
+                        <TextBlock Text="联单：" Style="{StaticResource AddDeclarationLable}" Width="Auto" Margin="30,0,0,0" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Width="225" Text="{Binding Liandan}" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="码头：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" x:Name="tbDock"
+                                     Text="{Binding Dock,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    
+
+                    <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="注释：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" x:Name="tbRemark"
+                                 Text="{Binding Remark,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="运编号：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" x:Name="tbRelatedSystemNumber"
+                                 Text="{Binding RelatedSystemNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="报关状态：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Width="100" IsReadOnly="True"
+                                 Text="{Binding DeclarationStatus,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Width="300" Margin="10,0" x:Name="tbDeclarationStatusRemark"
+                                 Text="{Binding DeclarationStatusRemark,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                        <sdk:DatePicker  VerticalAlignment="Center" Width="193" SelectedDate="{Binding DeclarationDate}" x:Name="dpDeclarationStatusDate" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="退税状态：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Width="100" IsReadOnly="True"
+                                 Text="{Binding DrawbackStatus,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Width="300" Margin="10,0" x:Name="tbDrawbackStatusRemark"
+                                 Text="{Binding DrawbackStatusRemark,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                        <sdk:DatePicker  VerticalAlignment="Center" Width="193" SelectedDate="{Binding DrawbackDate}" x:Name="dpDrawbackStatusDate" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" Orientation="Horizontal" Visibility="Collapsed">
+                        <TextBlock Text="校验状态：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Width="100" IsReadOnly="True"
+                                 Text="{Binding VerificationStatus,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Width="502" Margin="10,0" x:Name="tbVerificationStatusDetail"
+                                 Text="{Binding VerificationStatusDetail,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="品名数量：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" IsReadOnly="True"
+                                 Text="{Binding TotalItems,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="集装箱数量：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" IsReadOnly="True"
+                                 Text="{Binding TotalContainers,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="9" Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="放行状态：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" IsReadOnly="True"
+                                 Text="{Binding AdmissionStatus,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="进港状态：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" IsReadOnly="True"
+                                 Text="{Binding LadingStatus,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="10" Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="上船状态：" Style="{StaticResource AddDeclarationLable}" />
+                        <TextBox MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" IsReadOnly="True"
+                                 Text="{Binding OnBoardingStatus,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="离港日期：" Style="{StaticResource AddDeclarationLable}" />
+                        <sdk:DatePicker x:Name="dpLeaveDate"  VerticalAlignment="Center" Width="260" SelectedDate="{Binding ShipLeaveDate}" />
+                    </StackPanel>
+                </Grid>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="报关">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="出口口岸：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbCustomhouse" Text="{Binding CustomhouseName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCustomhouse_Populating"  ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="出口日期：" Style="{StaticResource AddDeclarationLable}" />
+                        <sdk:DatePicker VerticalAlignment="Center" Width="260" SelectedDate="{Binding IEDate, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="备案号：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Text="{Binding ManualNumber, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="合同协议号：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Text="{Binding ControlNumber, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="经营单位：" Style="{StaticResource AddDeclarationLable}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Style="{StaticResource AddDeclarationInputBox}" Width="110" Text="{Binding TraderCode, Mode=TwoWay}" />
+                                <TextBox Style="{StaticResource AddDeclarationInputBox}" Width="150" Text="{Binding TraderName, Mode=TwoWay}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="运输方式：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbTransport" Text="{Binding TransportName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbTransport_Populating" ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="发货单位：" Style="{StaticResource AddDeclarationLable}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Style="{StaticResource AddDeclarationInputBox}" Width="110" Text="{Binding OwnerCode, Mode=TwoWay}" />
+                                <TextBox Style="{StaticResource AddDeclarationInputBox}" Width="150" Text="{Binding OwnerName, Mode=TwoWay}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="运输工具：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Text="{Binding Conveyance, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="申报单位：" Style="{StaticResource AddDeclarationLable}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Style="{StaticResource AddDeclarationInputBox}" Width="110" Text="{Binding AgentCode, Mode=TwoWay}" />
+                                <TextBox Style="{StaticResource AddDeclarationInputBox}" Width="150" Text="{Binding AgentName, Mode=TwoWay}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="航次号：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Text="{Binding VoyageNumber, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="贸易方式：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbTrade" Text="{Binding TradeName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbTrade_Populating"  ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="征免性质：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbLevy" Text="{Binding LevyName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbLevy_Populating"  ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="6" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="结汇方式：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbPay" Text="{Binding PayName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbPay_Populating"  ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="许可证号：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Text="{Binding LicenseNumber, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="7" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="运抵国地：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbCountry" Text="{Binding CountryName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCountry_Populating"  ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="抵运港：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbPort" Text="{Binding PortName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbPort_Populating"  ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="8" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="境内货源地：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbDistrict" Text="{Binding DistrictName,Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbDistrict_Populating"  ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="成交方式：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbTransaction" Text="{Binding TransactionName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbTransaction_Populating"  ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                        <TextBlock Text="运费：" Style="{StaticResource AddDeclarationLable}" />
+                        <input:AutoCompleteBox x:Name="acbFeeMarkTrans" Text="{Binding FeeMarkTransName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbFeeMark_Populating" ValueMemberPath="Name" Width="200" >
+                            <input:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </input:AutoCompleteBox.ItemTemplate>
+                        </input:AutoCompleteBox>
+                        <input:AutoCompleteBox x:Name="acbCurrencyTrans" Text="{Binding CurrencyTransName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCurrency_Populating" ValueMemberPath="Name" Width="200" Margin="12,0" >
+                            <input:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </input:AutoCompleteBox.ItemTemplate>
+                        </input:AutoCompleteBox>
+                        <TextBox x:Name="tbFeeTrans" Style="{StaticResource AddDeclarationInputBox}" Width="190" Text="{Binding FeeTrans, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                        <TextBlock Text="保费：" Style="{StaticResource AddDeclarationLable}" />
+                        <input:AutoCompleteBox x:Name="acbFeeMarkInsure" Text="{Binding FeeMarkInsureName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbFeeMark_Populating" ValueMemberPath="Name" Width="200" >
+                            <input:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </input:AutoCompleteBox.ItemTemplate>
+                        </input:AutoCompleteBox>
+                        <input:AutoCompleteBox x:Name="acbCurrencyInsure" Text="{Binding CurrencyInsureName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCurrency_Populating" ValueMemberPath="Name" Width="200" Margin="12,0" >
+                            <input:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </input:AutoCompleteBox.ItemTemplate>
+                        </input:AutoCompleteBox>
+                        <TextBox x:Name="tbFeeInsure" Style="{StaticResource AddDeclarationInputBox}" Width="190" Text="{Binding FeeInsure, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                        <TextBlock Text="杂费：" Style="{StaticResource AddDeclarationLable}" />
+                        <input:AutoCompleteBox x:Name="acbFeeMarkOther" Text="{Binding FeeMarkOtherName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbFeeMark_Populating" ValueMemberPath="Name" Width="200" >
+                            <input:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </input:AutoCompleteBox.ItemTemplate>
+                        </input:AutoCompleteBox>
+                        <input:AutoCompleteBox x:Name="acbCurrencyOther" Text="{Binding CurrencyOtherName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCurrency_Populating" ValueMemberPath="Name" Width="200" Margin="12,0" >
+                            <input:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </input:AutoCompleteBox.ItemTemplate>
+                        </input:AutoCompleteBox>
+                        <TextBox Style="{StaticResource AddDeclarationInputBox}" Width="190" Text="{Binding FeeOther, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="12" Grid.Column="0" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="件数：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Text="{Binding PackageAmount, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="12" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="包装种类：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbWrap" Text="{Binding WrapName, Mode=TwoWay}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbWrap_Populating"  ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="13" Grid.Column="0" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="毛重(公斤)：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Text="{Binding GrossWeight, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="13" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="净重(公斤)：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Text="{Binding NetWeight, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="14" Grid.Column="0" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="集装箱数：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Text="{Binding ContainerQuantity, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="14" Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="填写日期：" Style="{StaticResource AddDeclarationLable}" />
+                            <sdk:DatePicker  VerticalAlignment="Center" Width="260" SelectedDate="{Binding CreateDate, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="15" Grid.ColumnSpan="2" Grid.Column="0" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="备注：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox Style="{StaticResource AddDeclarationInputBox}" Width="610" Text="{Binding Note, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="商品">
+                <Grid x:Name="gridDeclarationItem">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdDeclarationItem" Style="{StaticResource CommonRadGridView}" ShowGroupPanel="False"  RowHeight="26"
+                                                 ItemsSource="{Binding Path=Items, Source={StaticResource DeclarationItemViewModel}}" >
+                        <telerikGridView:RadGridView.Columns>
+                            <telerik:GridViewDataColumn Header="序号" IsFilterable="False" DataMemberBinding="{Binding Index}" />
+                            <telerik:GridViewDataColumn Header="商品编号" IsFilterable="False" DataMemberBinding="{Binding Number}" Width="60" />
+                            <telerik:GridViewDataColumn Header="附加号" IsFilterable="False" DataMemberBinding="{Binding SubNumber}" Width="60" />
+                            <telerik:GridViewDataColumn Header="商品名称" IsFilterable="False" DataMemberBinding="{Binding Name}" Width="60" />
+                            <telerik:GridViewDataColumn Header="规格型号" IsFilterable="False" DataMemberBinding="{Binding Model}" Width="60" />
+                            <telerik:GridViewDataColumn Header="币制" IsFilterable="False" DataMemberBinding="{Binding CurrencyName}" Width="70" />
+                            <telerik:GridViewDataColumn Header="申报数量" IsFilterable="False" DataMemberBinding="{Binding DeclaredQuantity}" Width="65" />
+                            <telerik:GridViewDataColumn Header="申报单位" IsFilterable="False" DataMemberBinding="{Binding DeclaredUnitName}" Width="65" />
+                            <telerik:GridViewDataColumn Header="单价" IsFilterable="False" DataMemberBinding="{Binding DeclaredPrice}" Width="70" />
+                            <telerik:GridViewDataColumn Header="总价" IsFilterable="False" DataMemberBinding="{Binding DeclaredTotalPrice}" Width="70" />
+                            <telerik:GridViewDataColumn Header="法定数量" IsFilterable="False" DataMemberBinding="{Binding LegalQuantity}" Width="65" />
+                            <telerik:GridViewDataColumn Header="法定单位" IsFilterable="False" DataMemberBinding="{Binding LegalUnitName}" Width="65" />
+                            <telerik:GridViewDataColumn Header="第二数量" IsFilterable="False" DataMemberBinding="{Binding SecondQuantity}" Width="60" />
+                            <telerik:GridViewDataColumn Header="第二单位" IsFilterable="False" DataMemberBinding="{Binding SecondUnitName}" Width="60" />
+                            <telerik:GridViewDataColumn Header="征免方式" IsFilterable="False" DataMemberBinding="{Binding DutyName}" Width="60" />
+                            <telerikGridView:GridViewDataColumn Header=""  IsReorderable="False" IsFilterable="False">
+                                <telerikGridView:GridViewDataColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <telerik:RadButton x:Name="btnEdit" Click="btnEdit_Click" IsEnabled="{Binding Index, Converter={StaticResource DataRowButtonIsEnabledConverter}}">
+                                                <Image Source="/ProTemplate;component/Images/Icons/edit.png" ToolTipService.ToolTip="编辑" Style="{StaticResource ToolBarIconStyle}" />
+                                            </telerik:RadButton>
+                                            <telerik:RadButton x:Name="btnDelete" Margin="3,0" Click="btnDelete_Click" IsEnabled="{Binding Index, Converter={StaticResource DataRowButtonIsEnabledConverter}}">
+                                                <Image Source="/ProTemplate;component/Images/Icons/delete.png" ToolTipService.ToolTip="删除" Style="{StaticResource ToolBarIconStyle}" />
+                                            </telerik:RadButton>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </telerikGridView:GridViewDataColumn.CellTemplate>
+                            </telerikGridView:GridViewDataColumn>
+                        </telerikGridView:RadGridView.Columns>
+                    </telerikGridView:RadGridView>
+                    
+                    <Grid Grid.Row="1" x:Name="gridItemInput">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="商品编号：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbItemNumber" Style="{StaticResource AddDeclarationInputBoxShort}" 
+                                     Text="{Binding Number, ValidatesOnExceptions=True, NotifyOnValidationError=True}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="附加号：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbItemSubNumber" Style="{StaticResource AddDeclarationInputBoxShort}" Text="{Binding SubNumber}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock Text="商品名称：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbItemName" Style="{StaticResource AddDeclarationInputBoxShort}"
+                                     Text="{Binding Name, ValidatesOnExceptions=True, NotifyOnValidationError=True}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="规格型号：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbItemModel" Style="{StaticResource AddDeclarationInputBoxShort}" Text="{Binding Model}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="币制：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbCurrencyProduct" Text="{Binding CurrencyName, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCurrency_Populating" ValueMemberPath="Name" Width="150">
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock Text="申报数量：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbItemDeclaredQuantity" Style="{StaticResource AddDeclarationInputBoxShort}" Text="{Binding DeclaredQuantity}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="申报单位：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbUnitDeclaration" Text="{Binding DeclaredUnitName, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbUnit_Populating" ValueMemberPath="Name" Width="150">
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="单价：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbItemDeclaredPrice" Style="{StaticResource AddDeclarationInputBoxShort}" Text="{Binding DeclaredPrice}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock Text="总价：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbItemDeclaredTotalPrice" Style="{StaticResource AddDeclarationInputBoxShort}" Text="{Binding DeclaredTotalPrice}"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="法定数量：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbItemLegalQuantity" Style="{StaticResource AddDeclarationInputBoxShort}" Text="{Binding LegalQuantity}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="法定单位：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbUnitLaw" Text="{Binding LegalUnitName, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbUnit_Populating" ValueMemberPath="Name" Width="150">
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock Text="第二数量：" Style="{StaticResource AddDeclarationLable}" />
+                            <TextBox x:Name="tbItemSecondQuantity" Style="{StaticResource AddDeclarationInputBoxShort}" Text="{Binding SecondQuantity}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="第二单位：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbUnitLaw2" Text="{Binding SecondUnitName, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbUnit_Populating" ValueMemberPath="Name" Width="150">
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="征免方式：" Style="{StaticResource AddDeclarationLable}" />
+                            <input:AutoCompleteBox x:Name="acbDuty" Text="{Binding DutyName, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                   Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbDuty_Populating" ValueMemberPath="Name" Width="150">
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </StackPanel>
+
+                        <StackPanel x:Name="spAddItem" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Button x:Name="btnAddDeclarationItem" Click="btnAddDeclarationItem_Click" Width="55" Height="20"  Content="添加" />
+                        </StackPanel>
+                        <StackPanel x:Name="spUpdateItem" Grid.Row="4" Grid.Column="2" Visibility="Collapsed" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Button x:Name="btnUpdateDeclarationItem" Width="55" Height="20"  Content="更新" Click="btnUpdateDeclarationItem_Click" />
+                            <Button x:Name="btnCancelDeclarationItem" Width="55" Height="20"  Content="取消" Click="btnCancelDeclarationItem_Click" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="集装箱">
+                <uc:ContainerInputForm x:Name="containerInputForm" />
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="随附单证">
+                <uc:DocumentInputForm x:Name="documentInputForm" />
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="图片">
+                <uc:DelarationImageUploader x:Name="delarationImageUploader" />
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="主要费用" Name="tabFee">
+                <uc:MainFeeForm x:Name="mainFeeForm" />
+            </telerik:RadTabItem>
+
+        </telerik:RadTabControl>
+
+        <Border Grid.RowSpan="3">
+            <telerik:RadBusyIndicator x:Name="busyIndicator" DisplayAfter="0" IsBusy="False" BusyContent="正在处理，请稍候..." />
+        </Border>
+    </Grid>
+</telerik:RadWindow>

@@ -1,0 +1,82 @@
+﻿<telerik:RadWindow xmlns:my="clr-namespace:ProTemplate.UserControls" x:Class="ProTemplate.UserControls.RadWindows.SetDeclarationStatus"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    mc:Ignorable="d" Width="700" Height="500" FontFamily="SimHei"
+    d:DesignHeight="300" d:DesignWidth="400" Header="设置报关状态" Style="{StaticResource CommonRadWindowStyle}" telerik:Theming.Theme="Office_Blue" WindowStartupLocation="CenterScreen">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Border>
+            <telerik:RadToolBar x:Name="radToolBar" FontFamily="Tahoma" telerik:Theming.Theme="Office_Blue">
+                <telerik:RadButton x:Name="RemoveButton" Margin="2" Click="RemoveButton_Click">
+                    <Image Source="/ProTemplate;component/Images/Icons/delete.png" ToolTipService.ToolTip="移除" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadToolBarSeparator x:Name="StatusSeparator" />
+                <telerik:RadButton x:Name="StatusButton1" Margin="2" Tag="正在审理中" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status1.png" ToolTipService.ToolTip="设置为正在审理中" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton2" Tag="正在报关" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status4.png" ToolTipService.ToolTip="设置为正在报关" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton3" Tag="退单" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status6.png" ToolTipService.ToolTip="设置为退单" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton4" Tag="报关完成" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status5.png" ToolTipService.ToolTip="设置为报关完成" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton5" Tag="查验" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status3.png" ToolTipService.ToolTip="设置为查验" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton9" Tag="关封" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status3.png" ToolTipService.ToolTip="设置为关封" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton10" Tag="注销" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status3.png" ToolTipService.ToolTip="设置为注销" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton6" Tag="正常退单" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status7.png" ToolTipService.ToolTip="设置为正常退单" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton7" Tag="正在更改" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status2.png" ToolTipService.ToolTip="设置为正在更改" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton8" Tag="更改完成" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status8.png" ToolTipService.ToolTip="设置为更改完成" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="StatusButton11" Tag="退关" Click="StatusButton_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/status3.png" ToolTipService.ToolTip="设置为退关" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+            </telerik:RadToolBar>
+        </Border>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Text="海关编号:" Style="{StaticResource WindowInputLabel}" FontFamily="SimHei"  />
+            <TextBox Style="{StaticResource WindowInput}" FontSize="14" Height="23"  Width="280" FontFamily="SimHei" Name="tbDeclarationNumber" TextChanged="tbDeclarationNumber_TextChanged"></TextBox>
+        </StackPanel>
+        <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdCustomAll" Grid.Row="2" Style="{StaticResource CommonEditableRadGridView}" 
+                                      ShowGroupPanel="False">
+            <telerikGridView:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding Index}" IsFilterable="False" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="海关编号" DataMemberBinding="{Binding DeclarationNumber,Converter={StaticResource DeclarationNumberDisplayConverter}}" />
+                <telerik:GridViewDataColumn Header="批准文号" DataMemberBinding="{Binding ApprovalNumber}" />
+                <telerik:GridViewDataColumn Header="报关状态" DataMemberBinding="{Binding DeclarationStatus}" />
+                <telerik:GridViewDataColumn Header="提运单号"  DataMemberBinding="{Binding BillNumber}"/>
+                <telerik:GridViewDataColumn Header="发货单位" DataMemberBinding="{Binding TraderName}" />
+                <telerik:GridViewDataColumn Header="船名" DataMemberBinding="{Binding Conveyance}" />
+                <telerik:GridViewDataColumn Header="航次" DataMemberBinding="{Binding VoyageNumber}" />
+            </telerikGridView:RadGridView.Columns>
+        </telerikGridView:RadGridView>
+        <Border x:Name="bdMsgParent" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,8,10,0"></Border>
+
+        <Border Grid.RowSpan="3">
+            <telerik:RadBusyIndicator x:Name="busyIndicator" DisplayAfter="0" IsBusy="False" BusyContent="正在处理，请稍候..." />
+        </Border>
+    </Grid>
+</telerik:RadWindow>

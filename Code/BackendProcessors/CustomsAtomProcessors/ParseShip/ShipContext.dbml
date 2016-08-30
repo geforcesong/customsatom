@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CustomsAtom" Class="ShipContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=CustomsAtom;Integrated Security=True" SettingsObjectName="ParseShip.Properties.Settings" SettingsPropertyName="CustomsAtomConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Ship" Member="Ships">
+    <Type Name="Ship">
+      <Column Name="Conveyance" Type="System.String" DbType="NVarChar(32) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VoyageNumber" Type="System.String" DbType="NVarChar(64) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CallNumber" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+      <Column Name="Conveyancer" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="Agent" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="Dock" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="LeaveDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IMONumber" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+      <Column Name="Html" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+</Database>

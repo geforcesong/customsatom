@@ -1,0 +1,109 @@
+﻿<navigation:Page x:Class="ProTemplate.Views.CustomsList" 
+                 xmlns:my="clr-namespace:ProTemplate.UserControls.CustomControl"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+            xmlns:uc="clr-namespace:ProTemplate.UserControls"
+           xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           xmlns:myRowSelectors="clr-namespace:ProTemplate.Utility.Selectors"
+           xmlns:sys="clr-namespace:System;assembly=mscorlib"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="清单">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Resources>
+            <Style x:Key="RedRowStyle" TargetType="telerik:GridViewRow">
+                <Setter Property="Foreground" Value="Red" />
+            </Style>
+            <Style x:Key="DefaultRowStyle" TargetType="telerik:GridViewRow"/>
+            <Style x:Key="OrangeRowStyle" TargetType="telerik:GridViewRow">
+                <Setter Property="Foreground" Value="Orange" />
+            </Style>
+            <Style x:Key="GreenRowStyle" TargetType="telerik:GridViewRow">
+                <Setter Property="Foreground" Value="Green" />
+            </Style>
+            <Style x:Key="BlueRowStyle" TargetType="telerik:GridViewRow">
+                <Setter Property="Foreground" Value="Blue" />
+            </Style>
+            <Style x:Key="PurpleRowStyle" TargetType="telerik:GridViewRow">
+                <Setter Property="Foreground" Value="Purple" />
+            </Style>
+
+            <myRowSelectors:ConditionalStyleSelector x:Key="selector" ConditionConverter="{StaticResource DeclarationStatusConverter}">
+                <myRowSelectors:ConditionalStyleSelector.Rules>
+                    <myRowSelectors:ConditionalStyleRule Style="{StaticResource DefaultRowStyle}">
+                        <myRowSelectors:ConditionalStyleRule.Value>
+                            <sys:Int32>0</sys:Int32>
+                        </myRowSelectors:ConditionalStyleRule.Value>
+                    </myRowSelectors:ConditionalStyleRule>
+                    <myRowSelectors:ConditionalStyleRule Style="{StaticResource RedRowStyle}">
+                        <myRowSelectors:ConditionalStyleRule.Value>
+                            <sys:Int32>1</sys:Int32>
+                        </myRowSelectors:ConditionalStyleRule.Value>
+                    </myRowSelectors:ConditionalStyleRule>
+                    <myRowSelectors:ConditionalStyleRule Style="{StaticResource OrangeRowStyle}">
+                        <myRowSelectors:ConditionalStyleRule.Value>
+                            <sys:Int32>2</sys:Int32>
+                        </myRowSelectors:ConditionalStyleRule.Value>
+                    </myRowSelectors:ConditionalStyleRule>
+                    <myRowSelectors:ConditionalStyleRule Style="{StaticResource GreenRowStyle}">
+                        <myRowSelectors:ConditionalStyleRule.Value>
+                            <sys:Int32>3</sys:Int32>
+                        </myRowSelectors:ConditionalStyleRule.Value>
+                    </myRowSelectors:ConditionalStyleRule>
+                    <myRowSelectors:ConditionalStyleRule Style="{StaticResource BlueRowStyle}">
+                        <myRowSelectors:ConditionalStyleRule.Value>
+                            <sys:Int32>4</sys:Int32>
+                        </myRowSelectors:ConditionalStyleRule.Value>
+                    </myRowSelectors:ConditionalStyleRule>
+                    <myRowSelectors:ConditionalStyleRule Style="{StaticResource PurpleRowStyle}">
+                        <myRowSelectors:ConditionalStyleRule.Value>
+                            <sys:Int32>5</sys:Int32>
+                        </myRowSelectors:ConditionalStyleRule.Value>
+                    </myRowSelectors:ConditionalStyleRule>
+                </myRowSelectors:ConditionalStyleSelector.Rules>
+            </myRowSelectors:ConditionalStyleSelector>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <uc:CommonToolBar x:Name="toolbar" NewClick="CommonToolBar_NewClick" BatchNewClick="toolbar_BatchNewClick" PrintReportClick="CommonToolBar_PrintReportClick" BatchEditClick="toolbar_BatchEditClick" IsShowSetDeclarationStatusGroup="True" ChangeDeclarationStatusClick="CommonToolBar_ChangeDeclarationStatusClick"  RefreshClick="CommonToolBar_RefreshClick" EditClick="CommonToolBar_EditClick" ExportToExcelClick="CommonToolBar_ExportToExcelClick" ExportToWordClick="CommonToolBar_ExportToWordClick"  DeleteClick="toolbar_DeleteClick" IsShowSetDrawbackStatusGroup="True" ChangeDrawbackStatusClick="toolbar_ChangeDrawbackStatusClick" IsShowPortCheckButton="True" PortCheckClick="toolbar_PortCheckClick" PreListClick="toolbar_PreListClick" IsShowYSValidationButton="True" YSValidationClick="toolbar_YSValidationClick" />
+        <my:DeclarationFilter Grid.Row="1" x:Name="declarationFilter" ExcuteQueryClick="declarationFilter_ExcuteQueryClick" ResetClick="declarationFilter_ResetClick" DuplicatedClick="declarationFilter_DuplicatedClick" />
+        <!--<uc:DateFilterPanel Grid.Row="1" x:Name="dateFilter" OnSearch="dateFilter_OnSearch" OnReset="dateFilter_OnReset"  />-->
+        <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdCustomerAll" Grid.Row="2" Style="{StaticResource CommonEditableRadGridView}" 
+                                     ItemsSource="{Binding Path=Items, Source={StaticResource GetAllDeclarationByReceiveDateResultViewModel}}"
+                                     RowStyleSelector="{StaticResource selector}">
+            <telerikGridView:RadGridView.Columns>
+                <telerik:GridViewSelectColumn />
+                <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding Index, Converter={StaticResource MaxIndexConverter}}" IsFilterable="False" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="客户" DataMemberBinding="{Binding CustomerName}" />
+                <telerik:GridViewDataColumn Header="接收日期" DataMemberBinding="{Binding ReceivedDate, Converter={StaticResource ChineseDateConverter}}" IsReadOnly="True" Width="95" />
+                <telerik:GridViewDataColumn Header="海关编号" DataMemberBinding="{Binding DeclarationNumber,Converter={StaticResource DeclarationNumberDisplayConverter}}" />
+                <telerik:GridViewDataColumn Header="备案号" DataMemberBinding="{Binding ManualNumber}" />
+                <telerik:GridViewDataColumn Header="经营单位" DataMemberBinding="{Binding TraderName}"  Width="95" />
+                <telerik:GridViewDataColumn Header="运输工具" DataMemberBinding="{Binding Conveyance}" />
+                <telerik:GridViewDataColumn Header="航次号" DataMemberBinding="{Binding VoyageNumber}" />
+                <telerik:GridViewDataColumn Header="提运单号" DataMemberBinding="{Binding BillNumber}" />
+                <telerik:GridViewDataColumn Header="贸易方式" DataMemberBinding="{Binding TradeName}" />
+                <telerik:GridViewDataColumn Header="批准文号" DataMemberBinding="{Binding ApprovalNumber}" />
+                <telerik:GridViewDataColumn Header="报关状态" DataMemberBinding="{Binding DeclarationStatus}" />
+                <telerik:GridViewDataColumn Header="报关日期" DataMemberBinding="{Binding DeclarationDate, Converter={StaticResource ChineseDateConverter}}" IsReadOnly="True" Width="95" />
+                <telerik:GridViewDataColumn Header="商检编号" DataMemberBinding="{Binding ExaminationNumber}" />
+                <telerik:GridViewDataColumn Header="联单" DataMemberBinding="{Binding BillCount}" />
+                <telerik:GridViewDataColumn Header="码头" DataMemberBinding="{Binding Dock}" />
+                <telerik:GridViewDataColumn Header="离港日期" DataMemberBinding="{Binding ShipLeaveDate}" />
+                <telerik:GridViewDataColumn Header="运编号" DataMemberBinding="{Binding RelatedSystemNumber}" />
+                <!--<telerik:GridViewDataColumn Header="集装箱号" Width="100" DataMemberBinding="{Binding ContainerNumbers}" />-->
+                <telerik:GridViewDataColumn Header="注释" DataMemberBinding="{Binding Remark}" Width="95" />
+            </telerikGridView:RadGridView.Columns>
+        </telerikGridView:RadGridView>
+        <telerik:RadDataPager x:Name="gdPager" Grid.Row="3" Source="{Binding Items, ElementName=gdCustomerAll}" Style="{StaticResource CommonGridViewPager}"/>
+    </Grid>
+</navigation:Page>

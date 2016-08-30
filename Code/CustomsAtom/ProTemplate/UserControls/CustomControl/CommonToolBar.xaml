@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="ProTemplate.UserControls.CommonToolBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    mc:Ignorable="d"
+    d:DesignHeight="40" d:DesignWidth="800">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Border>
+            <telerik:RadToolBar x:Name="radToolBar" FontFamily="Tahome" telerik:Theming.Theme="Office_Blue">
+                <telerik:RadButton x:Name="btnRefresh" Margin="2" Click="btnRefresh_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/arrow_refresh.png" ToolTipService.ToolTip="刷新" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="刷新" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadToolBarSeparator />
+                <telerik:RadButton x:Name="btnNew" Margin="2" Click="btnNew_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/note_add.png" ToolTipService.ToolTip="新增" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="新增" VerticalAlignment="Center" FontFamily="SimHei"  />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadButton x:Name="btnBatchNew" Margin="2" Click="btnBatchNew_Click" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/page_lightning.png" ToolTipService.ToolTip="批量新增" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="批量新增" VerticalAlignment="Center" FontFamily="SimHei"  />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadButton x:Name="btnEdit" Margin="2" Click="btnEdit_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/note_edit.png" ToolTipService.ToolTip="打开" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="打开" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadButton x:Name="btnBatchEdit" Margin="2" Click="btnBatchEdit_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/table_edit.png" ToolTipService.ToolTip="批量修改" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="批量修改" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadButton x:Name="btnDelete" Margin="2" Click="btnDelete_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/note_delete.png" ToolTipService.ToolTip="删除" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="删除" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadButton x:Name="btnPreListEdit" Margin="2" Click="btnPreListEdit_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/report_edit.png" ToolTipService.ToolTip="编辑预录单" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="编辑预录单" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadToolBarSeparator x:Name="StatusSeparator" />
+                <telerik:RadButton x:Name="StatusButton" Margin="2" Tag="" Click="StatusButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/status1.png" ToolTipService.ToolTip="批量设置报关状态" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="设置报关状态" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                
+                <telerik:RadToolBarSeparator x:Name="DrawbackStatusSeparator" />
+                <telerik:RadButton  Margin="2" Tag="" x:Name="btnDrawback" Click="DrawbackStatus_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/bullet_green.png" ToolTipService.ToolTip="批量设置退税状态" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="设置退税状态" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+
+                <telerik:RadToolBarSeparator x:Name="PortCheckSeparator" />
+                <telerik:RadButton  Margin="2" Tag="" x:Name="btnPortCheck" Click="btnPortCheck_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/bell.png" ToolTipService.ToolTip="查看进港校验" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="查看进港校验" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadToolBarSeparator x:Name="YSValidationSeparator" />
+                <telerik:RadButton  Margin="2" Tag="" x:Name="btnYSValidation" Click="btnYSValidation_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/ToolBarIcons/bell.png" ToolTipService.ToolTip="洋山查验" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="洋山查验" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                <!--<telerik:RadButton  Margin="2" Tag="正常退单" x:Name="btnDrawbackNormal" Click="DrawbackStatus_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/bullet_green.png" ToolTipService.ToolTip="设置为正常退单" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" Tag="正在更改" x:Name="btnDrawbacking" Click="DrawbackStatus_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/bullet_purple.png" ToolTipService.ToolTip="设置为正在更改" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" Tag="更改完成" x:Name="btnDrawbacked" Click="DrawbackStatus_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/bullet_red.png" ToolTipService.ToolTip="设置为更改完成" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" Tag="其他" x:Name="btnDrawbackOther" Click="DrawbackStatus_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/bullet_yellow.png" ToolTipService.ToolTip="设置为其他" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>-->
+                <telerik:RadToolBarSeparator x:Name="ExaminationSeparator" />
+                <telerik:RadButton  Margin="2" x:Name="btnSetExamination" Tag="已检" Click="SetExamination_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/Icons/lightbulb.png" ToolTipService.ToolTip="设置为已检" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="设置为已检" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadButton  Margin="2" x:Name="btnSetNOExamination" Tag="未检" Click="SetExamination_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/ProTemplate;component/Images/Icons/lightbulb_off.png" ToolTipService.ToolTip="设置为未检" Style="{StaticResource ToolBarIconStyle}" />
+                        <TextBlock Text="设置为未检" VerticalAlignment="Center" FontFamily="SimHei" />
+                    </StackPanel>
+                </telerik:RadButton>
+                <telerik:RadToolBarSeparator />
+                <telerik:RadButton x:Name="btnExportToExcel" Margin="2" Click="btnExportToExcel_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/excel.png" ToolTipService.ToolTip="导出" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton x:Name="btnExportToWord" Margin="2" Click="btnExportToWord_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/page_white_put.png" ToolTipService.ToolTip="全部导出" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadButton x:Name="btnPrintReport" Margin="2" Click="btnPrintReport_Click">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/printer.png" ToolTipService.ToolTip="打印" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+                <telerik:RadToolBarSeparator />
+                <telerik:RadButton x:Name="btnFullScreen" Margin="2" Click="btnFullScreen_Click">
+                    <Image x:Name="imgFullScreen" Source="/ProTemplate;component/Images/ToolBarIcons/arrow_inout.png" ToolTipService.ToolTip="全屏" Style="{StaticResource ToolBarIconStyle}" />
+                </telerik:RadButton>
+            </telerik:RadToolBar>
+        </Border>
+    </Grid>
+</UserControl>

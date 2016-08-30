@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "CustomsAtom.Report", "CustomsAtom.Report\CustomsAtom.Report.rptproj", "{C3D2FE3B-1771-4000-9127-0E1D6B70AA48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3D2FE3B-1771-4000-9127-0E1D6B70AA48}.Debug|Default.ActiveCfg = Debug
+		{C3D2FE3B-1771-4000-9127-0E1D6B70AA48}.Debug|Default.Build.0 = DebugLocal
+		{C3D2FE3B-1771-4000-9127-0E1D6B70AA48}.Debug|Default.Deploy.0 = DebugLocal
+		{C3D2FE3B-1771-4000-9127-0E1D6B70AA48}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{C3D2FE3B-1771-4000-9127-0E1D6B70AA48}.DebugLocal|Default.Build.0 = DebugLocal
+		{C3D2FE3B-1771-4000-9127-0E1D6B70AA48}.Release|Default.ActiveCfg = Release
+		{C3D2FE3B-1771-4000-9127-0E1D6B70AA48}.Release|Default.Build.0 = Release
+		{C3D2FE3B-1771-4000-9127-0E1D6B70AA48}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

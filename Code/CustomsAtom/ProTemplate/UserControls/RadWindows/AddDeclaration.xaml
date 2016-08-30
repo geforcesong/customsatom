@@ -1,0 +1,357 @@
+﻿<telerik:RadWindow x:Class="ProTemplate.UserControls.RadWindows.AddDeclaration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+    xmlns:my="clr-namespace:ProTemplate.UserControls"
+    xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+    xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    mc:Ignorable="d" Header="新增报关" Style="{StaticResource CommonRadWindowStyle}" WindowState="Maximized" Activated="RadWindow_Activated"
+    Height="600" Width="800" telerik:Theming.Theme="Office_Blue" WindowStartupLocation="CenterScreen" Loaded="RadWindow_Loaded">
+    <telerik:RadWindow.Resources>
+        <Style TargetType="TextBlock" x:Key="AddDeclarationLable">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="75" />
+            <Setter Property="FontFamily" Value="SimHei" />
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="AddDeclarationInputBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="170" />
+            <Setter Property="FontFamily" Value="SimHei" />
+        </Style>
+
+        <Style TargetType="input:AutoCompleteBox" x:Key="AddDeclarationAutoCompleteBoxStyle">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="170" />
+            <Setter Property="FontFamily" Value="SimHei" />
+        </Style>
+    </telerik:RadWindow.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <my:EditWindowToolBar x:Name="toolBar" Grid.Row="0" SaveAndClose="toolBar_SaveAndClose" SaveAndNew="toolBar_SaveAndNew" Close="toolBar_Close" />
+        <Grid Grid.Row="1" >
+            <telerik:RadTabControl telerik:Theming.Theme="Office_Blue">
+                <telerik:RadTabItem Header="基本信息">
+                    <ScrollViewer>
+                        <Grid x:Name="MyScrolls">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="客户名称：" Style="{StaticResource AddDeclarationLable}" />
+                                    <input:AutoCompleteBox x:Name="acbCustomer" Text="{Binding CustomerName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                           Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCustomer_Populating" ValueMemberPath="Name" TabIndex="1" >
+                                        <input:AutoCompleteBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </input:AutoCompleteBox.ItemTemplate>
+                                    </input:AutoCompleteBox>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                    <TextBlock Text="海关编号：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbHGBH" MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding DeclarationNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="2" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                    <TextBlock Text="批准文号：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbHXDH" MaxLength="32" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding ApprovalNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="3" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                    <TextBlock Text="出口口岸：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbCKKA" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding CustomhouseName, Mode=TwoWay,ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="4" LostFocus="tbCKKA_LostFocus" ></TextBox>
+                                    <!--<input:AutoCompleteBox x:Name="acbCustomhouse" Text="{Binding CustomhouseName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                           Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCustomhouse_Populating" ValueMemberPath="Name" TabIndex="4" >
+                                        <input:AutoCompleteBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </input:AutoCompleteBox.ItemTemplate>
+                                    </input:AutoCompleteBox>-->
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                                    <TextBlock Text="备案号：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbManualNumber" MaxLength="16" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding ManualNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="5" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                    <TextBlock Text="贸易方式：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbMYFS" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding TradeName, Mode=TwoWay,ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="6" LostFocus="tbMYFS_LostFocus" ></TextBox>
+                                    <!--<input:AutoCompleteBox x:Name="acbTrade" Text="{Binding TradeName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                           Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbTrade_Populating"  ValueMemberPath="Name" TabIndex="6" >
+                                        <input:AutoCompleteBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </input:AutoCompleteBox.ItemTemplate>
+                                    </input:AutoCompleteBox>-->
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
+                                    <TextBlock Text="许可证号：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbLicenseNumber" MaxLength="16" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding LicenseNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="7" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal">
+                                    <TextBlock Text="运抵国(地区)：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbYDG" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding CountryName, Mode=TwoWay,ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="8" LostFocus="tbYDG_LostFocus" ></TextBox>
+                                    <!--<input:AutoCompleteBox x:Name="acbCountry" Text="{Binding CountryName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                           Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCountry_Populating"  ValueMemberPath="Name" TabIndex="8" >
+                                        <input:AutoCompleteBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </input:AutoCompleteBox.ItemTemplate>
+                                    </input:AutoCompleteBox>-->
+                                </StackPanel>
+                                <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                                    <TextBlock Text="境内货源地：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbYNHYD" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding DistrictName, Mode=TwoWay,ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="9" LostFocus="tbYNHYD_LostFocus" ></TextBox>
+                                    <!--<input:AutoCompleteBox x:Name="acbDistrict" Text="{Binding DistrictName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                           Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbDistrict_Populating"  ValueMemberPath="Name" TabIndex="9" >
+                                        <input:AutoCompleteBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </input:AutoCompleteBox.ItemTemplate>
+                                    </input:AutoCompleteBox>-->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                    <TextBlock Text="成交方式：" Style="{StaticResource AddDeclarationLable}" />
+                                    <ComboBox x:Name="cbTransaction" Width="92" VerticalAlignment="Center" Height="25" ItemsSource="{Binding Items, Source={StaticResource TransactionViewModel}}" DisplayMemberPath="Name" SelectionChanged="cbTransaction_SelectionChanged" TabIndex="10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2">
+                                    <TextBlock Text="运费：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbShipFee" Style="{StaticResource AddDeclarationInputBox}" Width="100" MaxLength="32"
+                                                 Text="{Binding FeightFeeRate,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="11" />
+                                    <TextBox x:Name="tbYF" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding FreightFeeCurrencyName, Mode=TwoWay,ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="12" LostFocus="tbYF_LostFocus" ></TextBox>
+                                    <!--<input:AutoCompleteBox x:Name="acbFeightFeeCurrency" Width="70" Text="{Binding FreightFeeCurrencyName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                           Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCurrency_Populating"  ValueMemberPath="Name" TabIndex="12" >
+                                        <input:AutoCompleteBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </input:AutoCompleteBox.ItemTemplate>
+                                    </input:AutoCompleteBox>-->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="3">
+                                    <TextBlock Text="保费："  Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbInsureFee" Style="{StaticResource AddDeclarationInputBox}" Width="100" MaxLength="32"
+                                                 Text="{Binding InsuranceFeeRate,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="13" />
+                                    <TextBox x:Name="tbBF" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding InsureFeeCurrencyName, Mode=TwoWay,ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="14" LostFocus="tbBF_LostFocus" ></TextBox>
+                                    <!--<input:AutoCompleteBox x:Name="acbInsureFeeCurrency" Width="70" Text="{Binding InsureFeeCurrencyName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                           Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCurrency_Populating"  ValueMemberPath="Name" TabIndex="14" >
+                                        <input:AutoCompleteBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </input:AutoCompleteBox.ItemTemplate>
+                                    </input:AutoCompleteBox>-->
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                                    <TextBlock Text="件数：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbPackageAmount" Text="{Binding PackageAmount,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                             Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" TabIndex="15" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                                    <TextBlock Text="合同号：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbContractNumber" Text="{Binding ContractNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                             Style="{StaticResource AddDeclarationInputBox}" MaxLength="50" TabIndex="16" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal">
+                                    <TextBlock Text="毛重(千克)：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbGrossWeight" Text="{Binding GrossWeight,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                             Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" TabIndex="17" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Horizontal">
+                                    <TextBlock Text="净重(千克)：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbNetWeight" Text="{Binding NetWeight,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                             Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" TabIndex="18" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" Grid.Row="4">
+                                    <TextBlock Text="接收日期：" Style="{StaticResource AddDeclarationLable}" />
+                                    <sdk:DatePicker x:Name="dpReceiveDate"  VerticalAlignment="Center" Width="170" SelectedDate="{Binding ReceivedDate,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"  />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
+                                    <TextBlock Text="集装箱号：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbContainerNumbers" MaxLength="1000" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding ContainerNumbers,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="19" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal">
+                                    <TextBlock Text="结汇方式：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbJHFS" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding PayName, Mode=TwoWay,ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="20" LostFocus="tbJHFS_LostFocus" ></TextBox>
+                                    <!--<input:AutoCompleteBox x:Name="acbPay" Text="{Binding PayName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                           Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbPay_Populating"  ValueMemberPath="Name" TabIndex="20" >
+                                        <input:AutoCompleteBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </input:AutoCompleteBox.ItemTemplate>
+                                    </input:AutoCompleteBox>-->
+                                </StackPanel>
+                                <StackPanel Grid.Column="3" Grid.Row="4" Orientation="Horizontal">
+                                    <TextBlock Text="随附单证：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbDocumentCodes" MaxLength="50" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding DocumentCodes,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="21" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="5" Orientation="Horizontal">
+                                    <TextBlock Text="商检编号：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbExaminationNumber" MaxLength="50" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding ExaminationNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="22" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal">
+                                    <TextBlock Text="运编号：" Style="{StaticResource AddDeclarationLable}" />
+                                    <TextBox x:Name="tbRelatedSystemNumber" MaxLength="50" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding RelatedSystemNumber,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="23" />
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdHSCode" MinHeight="150" Style="{StaticResource CommonRadGridView}" ShowGroupPanel="False" >
+                                    <telerikGridView:RadGridView.Columns>
+                                        <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding SortOrder}" IsFilterable="False" />
+                                        <telerik:GridViewDataColumn Header="项号" DataMemberBinding="{Binding ControlNumber}" IsFilterable="False" />
+                                        <telerik:GridViewDataColumn Header="商品编号" DataMemberBinding="{Binding HSCode}" IsFilterable="False" />
+                                        <telerik:GridViewDataColumn Header="商品名称" DataMemberBinding="{Binding Name}" IsFilterable="False" />
+                                        <telerik:GridViewDataColumn Header="第一计量单位" DataMemberBinding="{Binding FirstUnitName}" IsFilterable="False" />
+                                        <telerik:GridViewDataColumn Header="第一数量" DataMemberBinding="{Binding FirstQuantity}" IsFilterable="False" />
+                                        <telerik:GridViewDataColumn Header="总价" DataMemberBinding="{Binding TotalAmount}" IsFilterable="False" />
+                                        <telerik:GridViewDataColumn Header="币制" DataMemberBinding="{Binding CurrencyName}" IsFilterable="False" />
+                                        <telerikGridView:GridViewDataColumn Header=""  IsReorderable="False" IsFilterable="False">
+                                            <telerikGridView:GridViewDataColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <telerik:RadButton x:Name="btnMoveUp" Margin="0,3,5,3" Click="btnMoveUp_Click" Tag="{Binding ID}">
+                                                            <Image Source="/ProTemplate;component/Images/Icons/up.png" ToolTipService.ToolTip="上移" Style="{StaticResource ToolBarIconStyle}" />
+                                                        </telerik:RadButton>
+                                                        <telerik:RadButton x:Name="btnMoveDown" Margin="0,3" Click="btnMoveDown_Click" Tag="{Binding ID}">
+                                                            <Image Source="/ProTemplate;component/Images/Icons/down.png" ToolTipService.ToolTip="下移" Style="{StaticResource ToolBarIconStyle}" />
+                                                        </telerik:RadButton>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </telerikGridView:GridViewDataColumn.CellTemplate>
+                                        </telerikGridView:GridViewDataColumn>
+                                        <telerikGridView:GridViewDataColumn Header=""  IsReorderable="False" IsFilterable="False">
+                                            <telerikGridView:GridViewDataColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <telerik:RadButton x:Name="btnEdit" Click="btnEdit_Click" Tag="{Binding ID}">
+                                                            <Image Source="/ProTemplate;component/Images/Icons/edit.png" ToolTipService.ToolTip="编辑" Style="{StaticResource ToolBarIconStyle}" />
+                                                        </telerik:RadButton>
+                                                        <telerik:RadButton x:Name="btnDelete" Margin="3,0" Click="btnDelete_Click" Tag="{Binding ID}">
+                                                            <Image Source="/ProTemplate;component/Images/Icons/delete.png" ToolTipService.ToolTip="删除" Style="{StaticResource ToolBarIconStyle}" />
+                                                        </telerik:RadButton>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </telerikGridView:GridViewDataColumn.CellTemplate>
+                                        </telerikGridView:GridViewDataColumn>
+                                    </telerikGridView:RadGridView.Columns>
+                                </telerikGridView:RadGridView>
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="项号：" Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbControlNumber" Style="{StaticResource AddDeclarationInputBox}" TabIndex="50" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                        <TextBlock Text="商品编号：" Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbHS" Style="{StaticResource AddDeclarationInputBox}" LostFocus="tbHS_LostFocus" TabIndex="51" MaxLength="10" />                                        
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="2">
+                                        <TextBlock Text="商品名称："  Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbProductName" Style="{StaticResource AddDeclarationInputBox}" TabIndex="52" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                                        <TextBlock Text="申报单位："  Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbDeclaredUnitName" Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" TabIndex="53" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.Column="0">
+                                        <TextBlock Text="申报数量：" Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbDeclaredQuantity" Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" TabIndex="54" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                        <TextBlock Text="第一计量单位："  Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbFirstUnitName" Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" TabIndex="55" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.Column="2">
+                                        <TextBlock Text="第一数量：" Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbFirstQuantity" Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" LostFocus="tbFirstQuantity_LostFocus" TabIndex="56" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal">
+                                        <TextBlock Text="第二计量单位："  Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbSecondUnitName" Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" TabIndex="57" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.Column="0">
+                                        <TextBlock Text="第二数量：" Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbSecondQuantity" Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" TabIndex="58" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                                        <TextBlock Text="总价："  Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbTotalAmount" Style="{StaticResource AddDeclarationInputBox}" MaxLength="16" TabIndex="59" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.Column="2">
+                                        <TextBlock Text="币制：" Style="{StaticResource AddDeclarationLable}" />
+                                        <TextBox x:Name="tbBZ" Style="{StaticResource AddDeclarationInputBox}" Text="{Binding CurrencyName, Mode=TwoWay,ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}" TabIndex="60" LostFocus="tbBZ_LostFocus" ></TextBox>
+                                        <!--<input:AutoCompleteBox x:Name="acbCurrency" Text="{Binding CurrencyName,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True,UpdateSourceTrigger=Explicit}"
+                                                           Style="{StaticResource AddDeclarationAutoCompleteBoxStyle}" FilterMode="None" Populating="acbCurrency_Populating"  ValueMemberPath="Name" TabIndex="60" >
+                                            <input:AutoCompleteBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}" />
+                                                </DataTemplate>
+                                            </input:AutoCompleteBox.ItemTemplate>
+                                        </input:AutoCompleteBox>-->
+                                    </StackPanel>
+                                    <Button Grid.Row="2" Grid.Column="3" x:Name="btnAddHS" Width="55" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Margin="10,0" Content="添加" Click="btnAddHS_Click" />
+                                    <StackPanel x:Name="spUpdateHS" Orientation="Horizontal" Visibility="Collapsed" Grid.Row="2" Grid.Column="3">
+                                        <Button x:Name="btnUpdateHS"  Width="55" VerticalAlignment="Center" Height="20" Margin="10,0" Content="更新" Click="btnUpdateHS_Click"  />
+                                        <Button x:Name="btnCancelHS"  Width="55" VerticalAlignment="Center" Height="20" Content="取消" Click="btnCancelHS_Click"  />
+                                    </StackPanel>
+                                    <Border Grid.Row="3">
+                                        <TextBlock x:Name="hsMsg" Text="没有相关HS信息" TextWrapping="Wrap" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </ScrollViewer>
+                </telerik:RadTabItem>
+            </telerik:RadTabControl>
+        </Grid>
+        <Border x:Name="bdMsgParent" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,8,10,0"></Border>
+        
+        <Border Grid.RowSpan="3">
+            <telerik:RadBusyIndicator x:Name="busyIndicator" DisplayAfter="0" IsBusy="False" BusyContent="正在处理，请稍候..." />
+        </Border>
+    </Grid>
+</telerik:RadWindow>

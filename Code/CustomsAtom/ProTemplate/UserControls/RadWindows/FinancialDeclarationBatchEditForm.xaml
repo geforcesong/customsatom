@@ -1,0 +1,67 @@
+﻿<telerik:RadWindow xmlns:my="clr-namespace:ProTemplate.UserControls" x:Class="ProTemplate.UserControls.RadWindows.FinancialDeclarationBatchEditForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input"
+    xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+    
+    mc:Ignorable="d" Header="修改报关单" telerik:Theming.Theme="Office_Blue" WindowStartupLocation="CenterScreen" 
+    Height="500" Width="800" Loaded="RadWindow_Loaded">
+    <telerik:RadWindow.Resources>
+        <Style TargetType="input:AutoCompleteBox" x:Key="AddDeclarationAutoCompleteBoxStyle">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="260" />
+        </Style>
+    </telerik:RadWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <my:EditWindowToolBar x:Name="toolBar" Grid.Row="0" IsNew="False" SaveAndClose="EditWindowToolBar_SaveAndClose" Close="EditWindowToolBar_Close"/>
+        <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdDeclaration" Grid.Row="1" Style="{StaticResource CommonEditableRadGridView}" 
+                                     SelectionMode="Single" ShowGroupPanel="False" 
+                                     >
+            <telerikGridView:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding Index}" IsFilterable="False" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn Header="客户" DataMemberBinding="{Binding CustomerName,Mode=TwoWay}" IsFilterable="False">
+                    <telerik:GridViewDataColumn.CellEditTemplate>
+                        <DataTemplate>
+                            <input:AutoCompleteBox x:Name="acbCustomer" Text="{Binding CustomerName, Mode=TwoWay}" FilterMode="None" Populating="acbCustomer_Populating" ValueMemberPath="Name" >
+                                <input:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </input:AutoCompleteBox.ItemTemplate>
+                            </input:AutoCompleteBox>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellEditTemplate>
+
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="海关编号" DataMemberBinding="{Binding DeclarationNumber, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="提运单号" DataMemberBinding="{Binding BillNumber, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="批准文号" DataMemberBinding="{Binding ApprovalNumber,  Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="报关费" DataMemberBinding="{Binding DeclarationFeeAmount, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="报关成本" DataMemberBinding="{Binding DeclarationFeeCost, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="联单费" DataMemberBinding="{Binding BillFeeAmount, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="商检费" DataMemberBinding="{Binding ExaminationFeeAmount, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="商检成本" DataMemberBinding="{Binding ExaminationFeeCost, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="查验费" DataMemberBinding="{Binding CheckFeeAmount, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="查验成本" DataMemberBinding="{Binding CheckFeeCost, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="代办费" DataMemberBinding="{Binding CommissionFeeAmount, Mode=TwoWay}" IsFilterable="False"/>
+                <telerik:GridViewDataColumn Header="代办成本" DataMemberBinding="{Binding CommissionFeeCost, Mode=TwoWay}" IsFilterable="False"/>
+
+                <telerik:GridViewDataColumn Header="备注" DataMemberBinding="{Binding Remark,  Mode=TwoWay}" IsFilterable="False" />
+                <telerik:GridViewDataColumn Header="财务备注" DataMemberBinding="{Binding FinancialRemark,  Mode=TwoWay}" IsFilterable="False" />
+            </telerikGridView:RadGridView.Columns>
+        </telerikGridView:RadGridView>
+        <Border x:Name="bdMsgParent" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,8,10,0"></Border>
+        <Border Grid.RowSpan="3">
+            <telerik:RadBusyIndicator x:Name="busyIndicator" DisplayAfter="0" IsBusy="False" BusyContent="正在处理，请稍候..." />
+        </Border>
+    </Grid>
+</telerik:RadWindow>

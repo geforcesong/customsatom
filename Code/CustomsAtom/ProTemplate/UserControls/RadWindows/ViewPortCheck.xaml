@@ -1,0 +1,14 @@
+﻿<telerik:RadWindow x:Class="ProTemplate.UserControls.RadWindows.ViewPortCheck"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:uc="clr-namespace:ProTemplate.UserControls.CustomControl"
+    mc:Ignorable="d" Header="进港状态查询" Style="{StaticResource CommonRadWindowStyle}"
+    Height="600" Width="1000" telerik:Theming.Theme="Office_Blue"  WindowStartupLocation="CenterScreen">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <uc:DeclarationPortCheckUserControl x:Name="dpCheckUser" />
+    </Grid>
+</telerik:RadWindow>

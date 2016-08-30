@@ -1,0 +1,9 @@
+﻿<telerik:RadWindow x:Class="ProTemplate.UserControls.RadWindows.PrintPlaceHolder"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+		Height="474" Width="713" Loaded="FormLoad" WindowStartupLocation="CenterScreen"  Header="打印" telerik:Theming.Theme="Office_Blue">
+    <Grid>
+        <telerik:RadHtmlPlaceholder Name="hp" SourceUrl="http://google.com" />
+    </Grid>
+</telerik:RadWindow>

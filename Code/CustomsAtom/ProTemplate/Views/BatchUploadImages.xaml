@@ -1,0 +1,36 @@
+﻿<navigation:Page x:Class="ProTemplate.Views.BatchUploadImages" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           Title="批量上传报关图片">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <telerik:RadToolBar x:Name="radToolBar" FontFamily="Tahome" telerik:Theming.Theme="Office_Blue">
+            <telerik:RadButton x:Name="btnProcessUploadedImages" Margin="2" Click="btnProcessUploadedImages_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/ProTemplate;component/Images/ToolBarIcons/cup_go.png" ToolTipService.ToolTip="处理所有已上传图片" Style="{StaticResource ToolBarIconStyle}" />
+                    <TextBlock Text="处理所有已上传图片" VerticalAlignment="Center" Margin="5,0" />
+                </StackPanel>
+            </telerik:RadButton>
+        </telerik:RadToolBar>
+        <telerik:RadUpload Grid.Row="1"  telerik:Theming.Theme="Office_Blue"
+			            x:Name="imgUploader" Width="Auto" Height="Auto" MinHeight="450" MinWidth="0"
+			            Filter="Image Files (*.gif;*.jpg;*.jpeg;*.png;*.tif;*.tiff)|*.gif;*.jpg;*.jpeg;*.png;*.tif;*.tiff"
+			            FilterIndex="0" MaxFileCount="500" VerticalAlignment="Top"
+                        AllowDrop="true"
+			            IsAutomaticUpload="false"
+			            OverwriteExistingFiles="True"
+			            UploadServiceUrl="{StaticResource UploadServiceUrl}"
+                        TargetFolder="UserUploads/DeclarationImageTemp"
+                        IsAppendFilesEnabled="True"
+                        MaxFileSize="15000000" MaxUploadSize="300000000" />
+    </Grid>
+</navigation:Page>

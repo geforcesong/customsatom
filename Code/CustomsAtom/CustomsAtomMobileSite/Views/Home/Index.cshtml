@@ -1,0 +1,67 @@
+﻿@model CustomsAtomMobileSite.Models.DeclarationSearchResult
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+
+@using (Html.BeginForm())
+{
+    <text>按日期查询：开始日期:</text>
+    <input id="Text2" type="text" name="startDate" />
+    <text>结束日期:</text>
+    <input id="Text3" type="text" name="endDate" />
+    <br />
+    <input id="Submit1" type="submit" value="查询" />
+    
+    if (Model != null)
+    {         
+        <div>
+            <table>
+                <tr>
+                    <th>序号</th>
+                    <th>海关编号</th>
+                    <th>接收日期</th>
+                    <th>客户名称</th>
+                    <th>备案号</th>
+                    <th>经营单位</th>
+                    <th>运输工具</th>
+                    <th>航次号</th>
+                    <th>提运单号</th>
+                    <th>贸易方式</th>
+                    <th>批准文号</th>
+                    <th>报关状态</th>
+                    <th>退税状态</th>
+                    <th>校验状态</th>
+                    <th>进港状态</th>
+                    <th>放行状态</th>
+                    <th>商检编号</th>
+                </tr>
+                @foreach (var m in Model.Declarations)
+                {
+                    <tr>
+                        <td>@m.Index</td>
+                        <td>@m.DeclarationNumber</td>
+                        <td>@m.ReceivedDate</td>
+                        <td>@m.CustomerName</td>
+                        <td>@m.ManualNumber</td>
+                        <td>@m.TraderName</td>
+                        <td>@m.Conveyance</td>
+                        <td>@m.VoyageNumber</td>
+                        <td>@m.BillNumber</td>
+                        <td>@m.TradeName</td>
+                        <td>@m.ApprovalNumber</td>
+                        <td>@m.DeclarationStatus</td>
+                        <td>@m.DrawbackStatus</td>
+                        <td>@m.VerificationStatus</td>
+                        <td>@m.LadingStatus</td>
+                        <td>@m.AdmissionStatus</td>
+                        <td>@m.ExaminationNumber</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        
+     }
+}

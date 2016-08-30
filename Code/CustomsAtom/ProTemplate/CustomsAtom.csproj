@@ -1,0 +1,889 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D3B6AC8D-A911-49E9-811A-A1F679769FE8}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProTemplate</RootNamespace>
+    <AssemblyName>ProTemplate</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>ProTemplate.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>ProTemplate.App</SilverlightAppEntry>
+    <TestPageFileName>ProTemplateTestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>false</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>..\ProTemplate.Web\CustomsAtom.Web.csproj</LinkedServerProject>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="SevenZip">
+      <HintPath>..\References\SevenZip.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.DomainServices.Client, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Client.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceModel.Web.Extensions, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.ServiceModel.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Data.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for Silverlight Q1 2011\Binaries\Silverlight\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for Silverlight Q1 2011\Binaries\Silverlight\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking">
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for Silverlight Q1 2011\Binaries\Silverlight\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for Silverlight Q1 2011\Binaries\Silverlight\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for Silverlight Q1 2011\Binaries\Silverlight\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for Silverlight Q1 2011\Binaries\Silverlight\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for Silverlight Q1 2011\Binaries\Silverlight\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Themes.Office_Blue">
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for Silverlight Q1 2011\Binaries\Silverlight\Telerik.Windows.Themes.Office_Blue.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CorporationDataModel.cs" />
+    <Compile Include="Models\BossDataModel.cs" />
+    <Compile Include="Models\LoginHistoryDataModel.cs" />
+    <Compile Include="Models\MachineDataModel.cs" />
+    <Compile Include="Models\SetDeclarationStatusDataModel.cs" />
+    <Compile Include="Models\CustomsUserDataModel.cs" />
+    <Compile Include="Models\CountryDataModel.cs" />
+    <Compile Include="Models\CurrencyDataModel.cs" />
+    <Compile Include="Models\CustomerDataModal.cs" />
+    <Compile Include="Models\CustomHouseDataModel.cs" />
+    <Compile Include="Models\CustomsUserQueryDataModel.cs" />
+    <Compile Include="Models\DeclarationContainerDataModel.cs" />
+    <Compile Include="Models\DeclarationDocumentDataModel.cs" />
+    <Compile Include="Models\DeclarationEditFormDataModel.cs" />
+    <Compile Include="Models\DeclarationInputModel.cs" />
+    <Compile Include="Models\DeclarationItemDataModel.cs" />
+    <Compile Include="Models\DeclarationPortCheckDataModel.cs" />
+    <Compile Include="Models\DistrictDateModel.cs" />
+    <Compile Include="Models\DocumentDataModel.cs" />
+    <Compile Include="Models\DocumentTypeDataModel.cs" />
+    <Compile Include="Models\DoubleCheckDeclarationVarifyDataModel.cs" />
+    <Compile Include="Models\DutyDataModel.cs" />
+    <Compile Include="Models\ExaminationDataModel.cs" />
+    <Compile Include="Models\FeeMarkDataModel.cs" />
+    <Compile Include="Models\FeeTypeDataModel.cs" />
+    <Compile Include="Models\FinancialExportDeclarationDataModel.cs" />
+    <Compile Include="Models\GetAllDeclarationByRecieveDateResultDataModel.cs" />
+    <Compile Include="Models\GetAllFinancialExportDeclarationDataModel.cs" />
+    <Compile Include="Models\HSCodeDictionaryDataModel.cs" />
+    <Compile Include="Models\HSInputModel.cs" />
+    <Compile Include="Models\LevyDataModel.cs" />
+    <Compile Include="Models\PayDataModel.cs" />
+    <Compile Include="Models\PortDataModel.cs" />
+    <Compile Include="Models\PurposeDataModel.cs" />
+    <Compile Include="Models\RoleDataModel.cs" />
+    <Compile Include="Models\SettingDataModel.cs" />
+    <Compile Include="Models\TradeDataModel.cs" />
+    <Compile Include="Models\TransactionDataModel.cs" />
+    <Compile Include="Models\TransportDataModel.cs" />
+    <Compile Include="Models\UnitDataModel.cs" />
+    <Compile Include="Models\UserDataModel.cs" />
+    <Compile Include="Models\UserGroupDataModel.cs" />
+    <Compile Include="Models\WrapDataModel.cs" />
+    <Compile Include="Models\YSExaminationDataDataModel.cs" />
+    <Compile Include="ProjectContentFrame.xaml.cs">
+      <DependentUpon>ProjectContentFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\CustomControl\CommonToolBar.xaml.cs">
+      <DependentUpon>CommonToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\ContainerInputForm.xaml.cs">
+      <DependentUpon>ContainerInputForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\DateFilterPanel.xaml.cs">
+      <DependentUpon>DateFilterPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\DeclarationFilter.xaml.cs">
+      <DependentUpon>DeclarationFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\DeclarationFilterItem.xaml.cs">
+      <DependentUpon>DeclarationFilterItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\DeclarationPortCheckUserControl.xaml.cs">
+      <DependentUpon>DeclarationPortCheckUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\DelarationImageUploader.xaml.cs">
+      <DependentUpon>DelarationImageUploader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\DocumentInputForm.xaml.cs">
+      <DependentUpon>DocumentInputForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\EditWindowToolBar.xaml.cs">
+      <DependentUpon>EditWindowToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\ImageContainer.xaml.cs">
+      <DependentUpon>ImageContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\MainFeeForm.xaml.cs">
+      <DependentUpon>MainFeeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\NavigationLink.xaml.cs">
+      <DependentUpon>NavigationLink.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\NavigationPanelHeaderItem.xaml.cs">
+      <DependentUpon>NavigationPanelHeaderItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\Splitter.xaml.cs">
+      <DependentUpon>Splitter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\YSValidationUserControl.xaml.cs">
+      <DependentUpon>YSValidationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddCustomer.xaml.cs">
+      <DependentUpon>AddCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddDeclaration.xaml.cs">
+      <DependentUpon>AddDeclaration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddExamination.xaml.cs">
+      <DependentUpon>AddExamination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddFeeType.xaml.cs">
+      <DependentUpon>AddFeeType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControl\ErrorIcon.xaml.cs">
+      <DependentUpon>ErrorIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddBoss.xaml.cs">
+      <DependentUpon>AddBoss.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddUserGroup.xaml.cs">
+      <DependentUpon>AddUserGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddCustomsUser.xaml.cs">
+      <DependentUpon>AddCustomsUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddMachine.xaml.cs">
+      <DependentUpon>AddMachine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\BatchAddDeclarationForm.xaml.cs">
+      <DependentUpon>BatchAddDeclarationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\AddCorporation.xaml.cs">
+      <DependentUpon>AddCorporation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\DeclarationBatchEditForm.xaml.cs">
+      <DependentUpon>DeclarationBatchEditForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\ExaminationBatchEditForm.xaml.cs">
+      <DependentUpon>ExaminationBatchEditForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\FinancialDeclarationBatchEditForm.xaml.cs">
+      <DependentUpon>FinancialDeclarationBatchEditForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\SetDrawbackStatus.xaml.cs">
+      <DependentUpon>SetDrawbackStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\PrintPlaceHolder.xaml.cs">
+      <DependentUpon>PrintPlaceHolder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\SetDeclarationStatus.xaml.cs">
+      <DependentUpon>SetDeclarationStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\DeclarationEditForm.xaml.cs">
+      <DependentUpon>DeclarationEditForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\ErrorWindow.xaml.cs">
+      <DependentUpon>ErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\VerifyDetailInfoWindow.xaml.cs">
+      <DependentUpon>VerifyDetailInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\ViewPortCheck.xaml.cs">
+      <DependentUpon>ViewPortCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\YSLogin.xaml.cs">
+      <DependentUpon>YSLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RadWindows\YSValidationWindow.xaml.cs">
+      <DependentUpon>YSValidationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\CommonUIFunction.cs" />
+    <Compile Include="Utility\Constants.cs" />
+    <Compile Include="Utility\Converters\BoolInverseConverter.cs" />
+    <Compile Include="Utility\Converters\ChineseDateConverter.cs" />
+    <Compile Include="Utility\Converters\CorporationConverter.cs" />
+    <Compile Include="Utility\Converters\DataRowButtonIsEnabledConverter.cs" />
+    <Compile Include="Utility\Converters\DeclarationNumberDisplayConverter.cs" />
+    <Compile Include="Utility\Converters\DeclarationStatusConverter.cs" />
+    <Compile Include="Utility\Converters\DoubleCheckDeclarationVarifyStatueConverter.cs" />
+    <Compile Include="Utility\Converters\MaxIndexConverter.cs" />
+    <Compile Include="Utility\Converters\VerifyStatusColorConverter.cs" />
+    <Compile Include="Utility\Converters\YSValidationStatusConverter.cs" />
+    <Compile Include="Utility\CustomTelerikGridColumn\RowNumberColumn.cs" />
+    <Compile Include="Utility\DomainServiceExt.cs" />
+    <Compile Include="Utility\EncryptionUtil.cs" />
+    <Compile Include="Utility\Enums.cs" />
+    <Compile Include="Utility\ErrorTexts.cs" />
+    <Compile Include="Utility\IsolatedStorageManager.cs" />
+    <Compile Include="Utility\MessageTexts.cs" />
+    <Compile Include="Utility\ObjectKeys.cs" />
+    <Compile Include="Utility\PageObjects\SearchConditionObject.cs" />
+    <Compile Include="Utility\PathManager.cs" />
+    <Compile Include="Utility\RadGridViewResourceManager.cs" />
+    <Compile Include="Utility\Selectors\ConditionalStyleSelector.cs" />
+    <Compile Include="Utility\Selectors\EnterToTab.cs" />
+    <Compile Include="Utility\SystemConfiguration.cs" />
+    <Compile Include="ViewModels\BossViewModel.cs" />
+    <Compile Include="ViewModels\CorporationViewModel.cs" />
+    <Compile Include="ViewModels\LoginHistoryViewModel.cs" />
+    <Compile Include="ViewModels\MachineViewModel.cs" />
+    <Compile Include="ViewModels\SetDeclarationStatusViewModel.cs" />
+    <Compile Include="ViewModels\CustomsUserViewModel.cs" />
+    <Compile Include="ViewModels\CountryViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\CustomhouseViewModel.cs" />
+    <Compile Include="ViewModels\CustomsUserQueryViewModel.cs" />
+    <Compile Include="ViewModels\DeclarationContainerViewModel.cs" />
+    <Compile Include="ViewModels\DeclarationDocumentViewModel.cs" />
+    <Compile Include="ViewModels\DeclarationItemViewModel.cs" />
+    <Compile Include="ViewModels\DeclarationPortCheckViewModel.cs" />
+    <Compile Include="ViewModels\DistrictViewModel.cs" />
+    <Compile Include="ViewModels\DocumentTypeViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViewModel.cs" />
+    <Compile Include="ViewModels\DoubleCheckDeclarationVarifyViewModel.cs" />
+    <Compile Include="ViewModels\DutyViewModel.cs" />
+    <Compile Include="ViewModels\ExaminationViewModel.cs" />
+    <Compile Include="ViewModels\FeeMarkViewModel.cs" />
+    <Compile Include="ViewModels\FeeTypeViewModel.cs" />
+    <Compile Include="ViewModels\FinancialExportDeclarationViewModel.cs" />
+    <Compile Include="ViewModels\GetAllDeclarationByRecieveDateResultViewModel.cs" />
+    <Compile Include="ViewModels\GetAllFinancialExportDeclarationViewModel.cs" />
+    <Compile Include="ViewModels\HSCodeDictionaryViewModel.cs" />
+    <Compile Include="ViewModels\LevyViewModel.cs" />
+    <Compile Include="ViewModels\PayViewModel.cs" />
+    <Compile Include="ViewModels\PortViewModel.cs" />
+    <Compile Include="ViewModels\PurposeViewModel.cs" />
+    <Compile Include="ViewModels\RoleViewModal.cs" />
+    <Compile Include="ViewModels\TradeViewModel.cs" />
+    <Compile Include="ViewModels\TransactionViewModel.cs" />
+    <Compile Include="ViewModels\TransportViewModel.cs" />
+    <Compile Include="ViewModels\UnitViewModel.cs" />
+    <Compile Include="ViewModels\UserGroupViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="ViewModels\ViewModelManager.cs" />
+    <Compile Include="ViewModels\WrapViewModel.cs" />
+    <Compile Include="ViewModels\YSExaminationDataViewModel.cs" />
+    <Compile Include="Views\ArchiveBoss.xaml.cs">
+      <DependentUpon>ArchiveBoss.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArchiveCorporation.xaml.cs">
+      <DependentUpon>ArchiveCorporation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArchiveCustomer.xaml.cs">
+      <DependentUpon>ArchiveCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArchiveCustomsUser.xaml.cs">
+      <DependentUpon>ArchiveCustomsUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArchiveFeeType.xaml.cs">
+      <DependentUpon>ArchiveFeeType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArchiveMachine.xaml.cs">
+      <DependentUpon>ArchiveMachine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArchiveRole.xaml.cs">
+      <DependentUpon>ArchiveRole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArchiveUser.xaml.cs">
+      <DependentUpon>ArchiveUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArchiveUserGroup.xaml.cs">
+      <DependentUpon>ArchiveUserGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BatchUploadImages.xaml.cs">
+      <DependentUpon>BatchUploadImages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FeeAll.xaml.cs">
+      <DependentUpon>FeeAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginHistoryView.xaml.cs">
+      <DependentUpon>LoginHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomsAll.xaml.cs">
+      <DependentUpon>CustomsAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomsList.xaml.cs">
+      <DependentUpon>CustomsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomsOperation.xaml.cs">
+      <DependentUpon>CustomsOperation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomsRefund.xaml.cs">
+      <DependentUpon>CustomsRefund.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomUsersView.xaml.cs">
+      <DependentUpon>CustomUsersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeclarationPortCheck.xaml.cs">
+      <DependentUpon>DeclarationPortCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Examination.xaml.cs">
+      <DependentUpon>Examination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FinancialAll.xaml.cs">
+      <DependentUpon>FinancialAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KSDShipList.xaml.cs">
+      <DependentUpon>KSDShipList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrintCheckNotification.xaml.cs">
+      <DependentUpon>PrintCheckNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Varify.xaml.cs">
+      <DependentUpon>Varify.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\YSExamination.xaml.cs">
+      <DependentUpon>YSExamination.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Assets\ObjectResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\ViewModelResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectContentFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\CommonToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\ContainerInputForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\DateFilterPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\DeclarationFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\DeclarationFilterItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\DeclarationPortCheckUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\DelarationImageUploader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\DocumentInputForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\EditWindowToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\ImageContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\MainFeeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\NavigationLink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\NavigationPanelHeaderItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\Splitter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\YSValidationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddDeclaration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddExamination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddFeeType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControl\ErrorIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddBoss.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddUserGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddCustomsUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddMachine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RadWindows\BatchAddDeclarationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\AddCorporation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RadWindows\DeclarationBatchEditForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RadWindows\ExaminationBatchEditForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\FinancialDeclarationBatchEditForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RadWindows\SetDrawbackStatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RadWindows\PrintPlaceHolder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RadWindows\SetDeclarationStatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RadWindows\DeclarationEditForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\ErrorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\VerifyDetailInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\ViewPortCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\YSLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RadWindows\YSValidationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArchiveBoss.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ArchiveCorporation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ArchiveCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArchiveCustomsUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArchiveFeeType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArchiveMachine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ArchiveRole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArchiveUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArchiveUserGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BatchUploadImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FeeAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginHistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CustomsAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomsOperation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomsRefund.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomUsersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeclarationPortCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Examination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FinancialAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KSDShipList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PrintCheckNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Varify.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\YSExamination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Configs\Navigation.config" />
+    <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\icon_search_32px.png" />
+    <Resource Include="Images\Icons\icon_solutions_32px.png" />
+    <Resource Include="Images\Icons\icon_users_32px.png" />
+    <Resource Include="Images\Icons\icon_wizard_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\icon_authentication_32px.png" />
+    <Resource Include="Images\Icons\icon_hostusers_32px.png" />
+    <Resource Include="Images\Icons\icon_lists_32px.png" />
+    <Resource Include="Images\Icons\icon_moduledefinitions_32px.png" />
+    <Resource Include="Images\Icons\icon_profile_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\icon_sitesettings_32px.png" />
+    <Resource Include="Images\Icons\tux.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\agt_reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\arrow_refresh.png" />
+    <Resource Include="Images\ToolBarIcons\cross.png" />
+    <Resource Include="Images\ToolBarIcons\note_add.png" />
+    <Resource Include="Images\ToolBarIcons\note_delete.png" />
+    <Resource Include="Images\ToolBarIcons\note_edit.png" />
+    <Resource Include="Images\ToolBarIcons\note_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\arrow_inout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utility\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Configs\FilterConfiguration.xml">
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\exclamation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\Excel.png" />
+    <Resource Include="Images\ToolBarIcons\Word.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\user.png" />
+    <Resource Include="Images\Icons\usergroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\down.png" />
+    <Resource Include="Images\Icons\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\status1.png" />
+    <Resource Include="Images\ToolBarIcons\status2.png" />
+    <Resource Include="Images\ToolBarIcons\status3.png" />
+    <Resource Include="Images\ToolBarIcons\status4.png" />
+    <Resource Include="Images\ToolBarIcons\status5.png" />
+    <Resource Include="Images\ToolBarIcons\status6.png" />
+    <Resource Include="Images\ToolBarIcons\status7.png" />
+    <Resource Include="Images\ToolBarIcons\status8.png" />
+    <Resource Include="Images\ToolBarIcons\status9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\coins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\lightbulb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\chart_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\lightbulb_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\bullet_green.png" />
+    <Resource Include="Images\ToolBarIcons\bullet_purple.png" />
+    <Resource Include="Images\ToolBarIcons\bullet_red.png" />
+    <Resource Include="Images\ToolBarIcons\bullet_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\bell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\arrow_redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\cup_go.png" />
+    <Resource Include="Images\ToolBarIcons\report_edit.png" />
+    <Resource Include="Images\ToolBarIcons\table_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\bullet_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\page_lightning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ToolBarIcons\page_white_put.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

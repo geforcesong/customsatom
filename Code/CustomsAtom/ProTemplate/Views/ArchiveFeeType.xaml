@@ -1,0 +1,31 @@
+﻿<navigation:Page xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="ProTemplate.Views.ArchiveFeeType" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:uc="clr-namespace:ProTemplate.UserControls"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+           d:DesignWidth="800" d:DesignHeight="480"
+           Title="费用类型">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <uc:CommonToolBar NewClick="commBar_NewClick" RefreshClick="commBar_RefreshClick" EditClick="commBar_EditClick" x:Name="commBar" />
+        <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdFeeType" Grid.Row="1" Style="{StaticResource CommonRadGridView}" 
+                                     ItemsSource="{Binding Path=Items, Source={StaticResource FeeTypeViewModel}}" SelectionMode="Single"
+                                     >
+            <telerikGridView:RadGridView.Columns>
+                <telerik:GridViewSelectColumn />
+                <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding Index}" IsFilterable="False" />
+                <telerik:GridViewDataColumn Header="费用代码" DataMemberBinding="{Binding Code, Mode=TwoWay}" />
+                <telerik:GridViewDataColumn Header="费用名称" DataMemberBinding="{Binding Name, Mode=TwoWay}" />
+                <telerik:GridViewDataColumn Header="费用" DataMemberBinding="{Binding Amount, Mode=TwoWay}" />
+                <telerik:GridViewDataColumn Header="成本" DataMemberBinding="{Binding Cost, Mode=TwoWay}" />
+            </telerikGridView:RadGridView.Columns>
+        </telerikGridView:RadGridView>
+    </Grid>
+</navigation:Page>

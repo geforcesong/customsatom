@@ -1,0 +1,48 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:vm="clr-namespace:ProTemplate.ViewModels"
+  >
+    <vm:CustomerViewModel x:Key="CustomerViewModel" />
+    <vm:UserViewModel x:Key="UserViewModel" />
+    <vm:RoleViewModel x:Key="RoleViewModel" />
+    <vm:BossViewModel x:Key="BossViewModel" />
+    <vm:CorporationViewModel x:Key="CorporationViewModel" />
+    <vm:UserGroupViewModel x:Key="UserGroupViewModel" />
+    <vm:CountryViewModel x:Key="CountryViewModel" />
+    <vm:CurrencyViewModel x:Key="CurrencyViewModel" />
+    <vm:CustomhouseViewModel x:Key="CustomhouseViewModel" />
+    <vm:FeeTypeViewModel x:Key="FeeTypeViewModel" />
+    <vm:CustomsUserViewModel x:Key="CustomsUserViewModel" />
+    <vm:DistrictViewModel x:Key="DistrictViewModel" />
+    <vm:DocumentViewModel x:Key="DocumentViewModel" />
+    <vm:DocumentTypeViewModel x:Key="DocumentTypeViewModel" />
+    <vm:DutyViewModel x:Key="DutyViewModel" />
+    <vm:FeeMarkViewModel x:Key="FeeMarkViewModel" />
+    <vm:LevyViewModel x:Key="LevyViewModel" />
+    <vm:PayViewModel x:Key="PayViewModel" />
+    <vm:PortViewModel x:Key="PortViewModel" />
+    <vm:PurposeViewModel x:Key="PurposeViewModel" />
+    <vm:TradeViewModel x:Key="TradeViewModel" />
+    <vm:TransactionViewModel x:Key="TransactionViewModel" />
+    <vm:TransportViewModel x:Key="TransportViewModel" />
+    <vm:UnitViewModel x:Key="UnitViewModel" />
+    <vm:WrapViewModel x:Key="WrapViewModel" />
+    <vm:HSCodeDictionaryViewModel x:Key="HSCodeDictionaryViewModel" />
+    <vm:GetAllDeclarationByReceiveDateResultViewModel x:Key="GetAllDeclarationByReceiveDateResultViewModel" />
+    <vm:GetAllFinancialExportDeclarationViewModel x:Key="GetAllFinancialExportDeclarationViewModel" />    
+    <vm:DeclarationItemViewModel x:Key="DeclarationItemViewModel" />
+    <vm:DeclarationDocumentViewModel x:Key="DeclarationDocumentViewModel" />
+    <vm:DeclarationContainerViewModel x:Key="DeclarationContainerViewModel" />
+    <vm:ExaminationViewModel x:Key="ExaminationViewModel" />
+    <vm:DoubleCheckDeclarationVarifyViewModel x:Key="DoubleCheckDeclarationVarifyViewModel" />
+    <vm:CustomsUserQueryViewModel x:Key="CustomsUserQueryViewModel" />
+    <vm:YSExaminationDataViewModel x:Key="YSExaminationDataViewModel" />
+    <vm:DeclarationPortCheckViewModel x:Key="DeclarationPortCheckViewModel" />
+    <vm:FinancialExportDeclarationViewModel x:Key="FinancialExportDeclarationViewModel"/>
+    <vm:SetDeclarationStatusViewModel x:Key="SetDeclarationStatusViewModel"/>
+    <vm:MachineViewModel x:Key="MachineViewModel"/>
+    <vm:LoginHistoryViewModel x:Key="LoginHistoryViewModel"/>
+    
+</ResourceDictionary>

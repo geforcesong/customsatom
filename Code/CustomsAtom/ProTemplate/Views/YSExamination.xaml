@@ -1,0 +1,16 @@
+﻿<navigation:Page x:Class="ProTemplate.Views.YSExamination" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           xmlns:uc="clr-namespace:ProTemplate.UserControls.CustomControl"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="洋山查验">
+    <Grid x:Name="LayoutRoot">
+        <uc:YSValidationUserControl x:Name="ysValidation" />
+    </Grid>
+</navigation:Page>

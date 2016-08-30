@@ -1,0 +1,14 @@
+﻿<navigation:Page x:Class="ProTemplate.Views.DeclarationPortCheck" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:uc="clr-namespace:ProTemplate.UserControls.CustomControl"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="报关进港状态查询" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+    <Grid x:Name="LayoutRoot">
+        <uc:DeclarationPortCheckUserControl />
+    </Grid>
+</navigation:Page>

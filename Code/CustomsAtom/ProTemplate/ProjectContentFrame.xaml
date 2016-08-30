@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="ProTemplate.ProjectContentFrame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <navigation:Frame x:Name="ContentFrameRoot" Source="/LoginPage.xaml" >
+        </navigation:Frame>
+        <telerik:RadBusyIndicator x:Name="busyIndicator" DisplayAfter="0" IsBusy="{Binding Path=IsLoading,Source={StaticResource CustomsAtomContext}}" BusyContent="正在初始化数据，请稍候..." FontFamily="SimHei" />
+        <telerik:RadBusyIndicator x:Name="busyIndicator2" DisplayAfter="0" IsBusy="False" BusyContent="正在处理，请稍候..." FontFamily="SimHei"  />
+    </Grid>
+</UserControl>

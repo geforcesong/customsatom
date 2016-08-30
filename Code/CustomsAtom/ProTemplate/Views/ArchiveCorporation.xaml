@@ -1,0 +1,31 @@
+﻿<navigation:Page x:Class="ProTemplate.Views.ArchiveCorporation" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:uc="clr-namespace:ProTemplate.UserControls"
+           xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="经营单位">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <uc:CommonToolBar NewClick="commBar_NewClick" RefreshClick="commBar_RefreshClick" DeleteClick="commBar_DeleteClick" EditClick="commBar_EditClick" x:Name="commBar" />
+        <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdCorporation" Grid.Row="1" Style="{StaticResource CommonRadGridView}" 
+                                     ItemsSource="{Binding Path=Items, Source={StaticResource CorporationViewModel}}" SelectionMode="Single"
+                                     >
+            <telerikGridView:RadGridView.Columns>
+                <telerik:GridViewSelectColumn />
+                <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding Index}" IsFilterable="False" />
+                <telerik:GridViewDataColumn Header="经营单位代码" DataMemberBinding="{Binding Code}" />
+                <telerik:GridViewDataColumn Header="经营单位名称" DataMemberBinding="{Binding Name}" />
+                <telerik:GridViewDataColumn Header="等级" DataMemberBinding="{Binding Level}" />
+            </telerikGridView:RadGridView.Columns>
+        </telerikGridView:RadGridView>
+    </Grid>
+</navigation:Page>

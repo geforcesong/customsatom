@@ -1,0 +1,56 @@
+﻿<telerik:RadWindow xmlns:my="clr-namespace:ProTemplate.UserControls" x:Class="ProTemplate.UserControls.RadWindows.AddFeeType"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    mc:Ignorable="d" Width="400" Height="300" Closed="RadWindow_Closed"
+    d:DesignHeight="300" d:DesignWidth="400" Header="新增费用类型" Style="{StaticResource CommonRadWindowStyle}" telerik:Theming.Theme="Office_Blue" WindowStartupLocation="CenterScreen">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <my:EditWindowToolBar x:Name="toolBar" Grid.Row="0" SaveAndClose="EditWindowToolBar_SaveAndClose" SaveAndNew="EditWindowToolBar_SaveAndNew" Close="EditWindowToolBar_Close"/>
+        <Grid Grid.Row="1" >
+            <telerik:RadTabControl BorderThickness="0" ScrollMode="Viewport" telerik:Theming.Theme="Office_Blue">
+                <telerik:RadTabItem>
+                    <telerik:RadTabItem.Header>
+                        <TextBlock Text="基本信息" Style="{StaticResource DefaultTextBlockFont}" />
+                    </telerik:RadTabItem.Header>
+                    <telerik:RadTabItem.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="费用代码:" Style="{StaticResource WindowInputLabel}"  />
+                            <TextBox Grid.Row="0" Grid.Column="1" Name="tbCode" MaxLength="10" Style="{StaticResource WindowInput}" Text="{Binding Code, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=Explicit}" />
+                            <TextBlock Grid.Row="1" Text="费用名称:" Style="{StaticResource WindowInputLabel}"  />
+                            <TextBox Grid.Row="1" Grid.Column="1" Name="tbName" MaxLength="50" Style="{StaticResource WindowInput}" Text="{Binding Name, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=Explicit}" />
+                            <TextBlock Grid.Row="2" Text="默认费用:" Style="{StaticResource WindowInputLabel}"  />
+                            <TextBox Grid.Row="2" Grid.Column="1" Name="tbAmount" MaxLength="64" Style="{StaticResource WindowInput}" Text="{Binding Amount, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=Explicit}" />
+                            <TextBlock Grid.Row="3" Text="默认成本:" Style="{StaticResource WindowInputLabel}"  />
+                            <TextBox Grid.Row="3" Grid.Column="1" Name="tbCost" MaxLength="64" Style="{StaticResource WindowInput}" Text="{Binding Cost, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=Explicit}" />
+                        </Grid>
+                    </telerik:RadTabItem.Content>
+                </telerik:RadTabItem>
+
+            </telerik:RadTabControl>
+        </Grid>
+        <Border x:Name="bdMsgParent" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,8,10,0"></Border>
+
+        <Border Grid.RowSpan="3">
+            <telerik:RadBusyIndicator x:Name="busyIndicator" DisplayAfter="0" IsBusy="False" BusyContent="正在处理，请稍候..." />
+        </Border>
+    </Grid>
+</telerik:RadWindow>

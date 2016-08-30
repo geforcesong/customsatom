@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="ProTemplate.UserControls.CustomControl.ImageContainer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    mc:Ignorable="d"
+    Height="185" Width="187">
+    
+    <Border Background="White" Margin="10" Padding="2" BorderBrush="#d5d5d5" BorderThickness="1">
+        <Grid>
+            <Grid x:Name="LayoutRoot">
+            
+            </Grid>
+            <telerik:RadButton x:Name="btnDelete" Click="btnDelete_Click" HorizontalAlignment="Right" VerticalAlignment="Top" >
+                <Image Source="/ProTemplate;component/Images/Icons/cross.png" ToolTipService.ToolTip="删除" Style="{StaticResource ToolBarIconStyle}" />
+            </telerik:RadButton>
+            <HyperlinkButton x:Name="downLink" Content="Download" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="downLink_Click" />
+        </Grid>
+    </Border>
+</UserControl>

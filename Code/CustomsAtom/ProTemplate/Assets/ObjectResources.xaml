@@ -1,0 +1,22 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:web="clr-namespace:ProTemplate.Web.DMServices"
+  xmlns:cvt="clr-namespace:ProTemplate.Utility.Converters"
+  xmlns:system="clr-namespace:System;assembly=mscorlib"
+  >
+    <web:CustomsAtomContext x:Key="CustomsAtomContext" />
+    <cvt:BoolInverseConverter x:Key="BoolInverseConverter" />
+    <cvt:ChineseDateConverter x:Key="ChineseDateConverter" />
+    <cvt:DeclarationNumberDisplayConverter x:Key="DeclarationNumberDisplayConverter" />
+    <cvt:DeclarationStatusConverter x:Key="DeclarationStatusConverter" />
+    <cvt:DoubleCheckDeclarationVarifyStatueConverter x:Key="DoubleCheckDeclarationVarifyStatueConverter" />
+    <cvt:VerifyStatusColorConverter x:Key="VerifyStatusColorConverter" />
+    <cvt:DataRowButtonIsEnabledConverter x:Key="DataRowButtonIsEnabledConverter" />
+    <cvt:YSValidationStatusConverter x:Key="YSValidationStatusConverter" />
+    <cvt:MaxIndexConverter x:Key="MaxIndexConverter" />
+    <cvt:CorporationConverter x:Key="CorporationConverter" />
+
+    <system:String x:Key="UploadServiceUrl">../../RadUploadHandler.ashx</system:String>
+</ResourceDictionary>

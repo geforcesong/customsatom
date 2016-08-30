@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Filters>
+<Filter Name="Customer" Visible="true" Enabled="true" FriendlyName="条件1:">
+  <Item Name="ID" Field="ID" FriendlyName="(全部)" Operator="IS NOT NULL" IsValueRequired="false" IsAssociate="false" AssociateName="" NeedResource="false" ResourceName="" Type="String" DisplayType=""/>
+  <Item Name="BossName" Field="Boss.Name" FriendlyName="老板名称" Operator="LIKE" IsValueRequired="true" IsAssociate="true" AssociateName="Boss" NeedResource="false" ResourceName="" Type="String" DisplayType="ComboBox">
+    <Associate Name="Boss" AssociateEntity="Boss" AssociateField="Name" OrderBy="Name" DisplayField="Name" NeedResource="false" ResourceName=""/>
+  </Item>
+  <Item Name="Name" Field="Name" FriendlyName="名称" Operator="LIKE" IsValueRequired="true" IsAssociate="false" AssociateName="" NeedResource="false" ResourceName="" Type="String" DisplayType="Text"/>
+  <Item Name="Address" Field="Address" FriendlyName="地址" Operator="LIKE" IsValueRequired="true" IsAssociate="false" AssociateName="" NeedResource="false" ResourceName="" Type="String" DisplayType="Text"/>
+  <Item Name="City" Field="City" FriendlyName="城市" Operator="LIKE" IsValueRequired="true" IsAssociate="false" AssociateName="" NeedResource="false" ResourceName="" Type="Int32" DisplayType="Text"/>
+  <Item Name="PostalCode" Field="PostalCode" FriendlyName="邮政编码" Operator="LIKE" IsValueRequired="true" IsAssociate="false" AssociateName="" NeedResource="false" ResourceName="" Type="String" DisplayType="Text"/>
+  <Item Name="CreatedDate" Field="CreatedDate" FriendlyName="填写日期" Operator=">=" IsValueRequired="true" IsAssociate="false" AssociateName="" NeedResource="false" ResourceName="" Type="DateTime" DisplayType="DateTime"/>
+</Filter>
+</Filters>

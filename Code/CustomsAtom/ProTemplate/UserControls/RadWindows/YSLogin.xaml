@@ -1,0 +1,27 @@
+﻿<telerik:RadWindow x:Class="ProTemplate.UserControls.RadWindows.YSLogin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    Header="洋山查验登录" Style="{StaticResource CommonRadWindowStyle}" FontFamily="SimHei"
+    mc:Ignorable="d"
+    Height="200" Width="300" telerik:Theming.Theme="Office_Blue"  WindowStartupLocation="CenterScreen">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="请输入下面图片中显示的验证码:" FontSize="16" Margin="10" FontFamily="SimHei"  />
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <Border BorderBrush="#eeeeee" BorderThickness="1" Width="150" Height="50" Margin="10" VerticalAlignment="Top">
+                    <Image  Stretch="Fill" x:Name="imgValidate" />
+                </Border>
+                <TextBox Height="23" Name="textBox1" Width="150" />
+            </StackPanel>
+            <Button Width="85" Height="25" Content="登录" Click="Button_Click" Margin="0,30,0,0" telerik:Theming.Theme="Office_Blue" />
+        </StackPanel>
+    </Grid>
+</telerik:RadWindow>

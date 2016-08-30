@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="ProTemplate.UserControls.RadWindows.ErrorIcon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="25" d:DesignWidth="25">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Image Source="/ProTemplate;component/Images/Icons/exclamation.png"  Name="Warning" Visibility="Collapsed">
+            <ToolTipService.ToolTip >
+                <TextBlock Name="txtToolTip" Foreground="Red" ></TextBlock>
+            </ToolTipService.ToolTip>
+        </Image>
+    </Grid>
+</UserControl>

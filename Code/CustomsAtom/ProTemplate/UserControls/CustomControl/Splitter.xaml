@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="ProTemplate.UserControls.CustomControl.Splitter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Style TargetType="Rectangle" x:Key="LeftRectangleStyle">
+            <Setter Property="Margin" Value="0,8" />
+            <Setter Property="Width" Value="1" />
+            <Setter Property="Fill">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#f7f7f7" Offset="0" />
+                        <GradientStop Color="#e2e2e2" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Rectangle" x:Key="RightRectangleStyle">
+            <Setter Property="Margin" Value="0,5" />
+            <Setter Property="Width" Value="1" />
+            <Setter Property="Fill">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#a5a5a5" Offset="0" />
+                        <GradientStop Color="#898989" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Horizontal">
+        <Rectangle Style="{StaticResource LeftRectangleStyle}" />
+        <Rectangle Style="{StaticResource RightRectangleStyle}" />
+    </StackPanel>
+</UserControl>

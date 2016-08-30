@@ -1,0 +1,36 @@
+﻿<navigation:Page x:Class="ProTemplate.Views.ArchiveCustomer" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:uc="clr-namespace:ProTemplate.UserControls"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           xmlns:myColumns="clr-namespace:ProTemplate.Utility.CustomTelerikGridColumn"
+           xmlns:sys="clr-namespace:System;assembly=mscorlib"
+           d:DesignWidth="640" d:DesignHeight="480"
+                 xmlns:cvt="clr-namespace:ProTemplate.Utility.Converters"
+           Title="客户管理页面">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource ViewContentGrid}">       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <uc:CommonToolBar x:Name="commBar" NewClick="commBar_NewClick" RefreshClick="commBar_RefreshClick" EditClick="commBar_EditClick"  ExportToExcelClick="CommonToolBar_ExportToExcelClick" ExportToWordClick="CommonToolBar_ExportToWordClick" />
+        <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdCustomers" Grid.Row="1" Style="{StaticResource CommonRadGridView}"
+                                     ItemsSource="{Binding Path=Items, Source={StaticResource CustomerViewModel}}" SelectionMode="Single"
+                                     >
+            <telerikGridView:RadGridView.Columns>
+                <telerik:GridViewSelectColumn />
+                <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding Index}" IsFilterable="False" />
+                <telerik:GridViewDataColumn Header="客户名称" DataMemberBinding="{Binding Name}" />
+                <telerik:GridViewDataColumn Header="电话号码" DataMemberBinding="{Binding PhoneNumber}" />
+                <telerik:GridViewDataColumn Header="地址" DataMemberBinding="{Binding Address}" />
+                <telerik:GridViewDataColumn Header="老板" DataMemberBinding="{Binding BossName}" />
+                <telerik:GridViewDataColumn Header="是否有效" DataMemberBinding="{Binding IsActive}" />
+            </telerikGridView:RadGridView.Columns>
+        </telerikGridView:RadGridView>
+    </Grid>
+</navigation:Page>

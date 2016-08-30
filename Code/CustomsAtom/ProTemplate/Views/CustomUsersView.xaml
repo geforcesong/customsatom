@@ -1,0 +1,26 @@
+﻿<navigation:Page x:Class="ProTemplate.Views.CustomUsersView" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="报关员查询">
+    <Grid x:Name="LayoutRoot">
+        <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdCustomsUser" Grid.Row="1" Style="{StaticResource CommonRadGridView}" 
+                                     ItemsSource="{Binding Path=Items, Source={StaticResource CustomsUserQueryViewModel}}"
+                                     >
+            <telerikGridView:RadGridView.Columns>
+                <telerik:GridViewSelectColumn />
+                <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding Index}" IsFilterable="False" />
+                <telerik:GridViewDataColumn Header="报关员" DataMemberBinding="{Binding Name}" />
+                <telerik:GridViewDataColumn Header="编号" DataMemberBinding="{Binding CustomerNo}" />
+                <telerik:GridViewDataColumn Header="身份证" DataMemberBinding="{Binding IdentityNo}" />
+                <telerik:GridViewDataColumn Header="积分" DataMemberBinding="{Binding Score}" />
+            </telerikGridView:RadGridView.Columns>
+        </telerikGridView:RadGridView>
+    </Grid>
+</navigation:Page>

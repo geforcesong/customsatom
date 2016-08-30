@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="ProTemplate.UserControls.CustomControl.YSValidationUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikGridView="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:myRowSelectors="clr-namespace:ProTemplate.Utility.Selectors"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Resources>
+            <Style x:Key="RedRowStyle" TargetType="telerik:GridViewRow">
+                <Setter Property="Foreground" Value="Red" />
+            </Style>
+            <Style x:Key="DefaultRowStyle" TargetType="telerik:GridViewRow"/>
+
+            <myRowSelectors:ConditionalStyleSelector x:Key="selector" ConditionConverter="{StaticResource YSValidationStatusConverter}">
+                <myRowSelectors:ConditionalStyleSelector.Rules>
+                    <myRowSelectors:ConditionalStyleRule Style="{StaticResource DefaultRowStyle}">
+                        <myRowSelectors:ConditionalStyleRule.Value>
+                            <sys:Int32>0</sys:Int32>
+                        </myRowSelectors:ConditionalStyleRule.Value>
+                    </myRowSelectors:ConditionalStyleRule>
+                    <myRowSelectors:ConditionalStyleRule Style="{StaticResource RedRowStyle}">
+                        <myRowSelectors:ConditionalStyleRule.Value>
+                            <sys:Int32>1</sys:Int32>
+                        </myRowSelectors:ConditionalStyleRule.Value>
+                    </myRowSelectors:ConditionalStyleRule>
+                </myRowSelectors:ConditionalStyleSelector.Rules>
+            </myRowSelectors:ConditionalStyleSelector>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btnLogin" Height="25" Width="60" Content="登录" HorizontalAlignment="Left" Click="btnLogin_Click" />
+            <Button x:Name="btnClear" Height="25" Width="60" Content="清空" HorizontalAlignment="Left" Margin="10,0,0,0" IsEnabled="False" Click="btnClear_Click" />
+            <StackPanel Orientation="Horizontal" Margin="20,0">
+                <RadioButton x:Name="rbDays" Content="按天查询" VerticalAlignment="Center" IsEnabled="False" Checked="rbDays_Checked" />
+                <Button x:Name="btnToday" Height="25" Width="60" Content="当天" HorizontalAlignment="Left" Margin="10,0" IsEnabled="False" Click="btnToday_Click" />
+                <Button x:Name="btnYesterday" Height="25" Width="60" Content="前一天" HorizontalAlignment="Left" IsEnabled="False" Click="btnYesterday_Click" />
+                <Button x:Name="btnTheDayBeforeYesterday" Height="25" Margin="10,0,0,0" Width="60" Content="前两天" HorizontalAlignment="Left" IsEnabled="False" Click="btnTheDayBeforeYesterday_Click" />
+                <RadioButton x:Name="rbConf" Content="自定义查询" VerticalAlignment="Center" Margin="10,0" IsEnabled="False" Checked="rbDays_Checked" />
+                <TextBox x:Name="tbInputNumber" Width="200" Height="25" IsEnabled="False" TextChanged="tbInputNumber_TextChanged" />
+                <Button x:Name="btnSetDeclarationStatus" Height="25" Width="70" Content="设置报关状态" HorizontalAlignment="Left" Click="btnSetDeclarationStatus_Click" Margin="10,0"  />
+            </StackPanel>
+        </StackPanel>
+        <telerikGridView:RadGridView telerik:Theming.Theme="Office_Blue" x:Name="gdYS" Grid.Row="1" Style="{StaticResource CommonRadGridView}" 
+                                     ItemsSource="{Binding Path=Items, Source={StaticResource YSExaminationDataViewModel}}" RowStyleSelector="{StaticResource selector}"
+                                     >
+            <telerikGridView:RadGridView.Columns>
+                <telerik:GridViewSelectColumn />
+                <telerik:GridViewDataColumn Header="序号" DataMemberBinding="{Binding Index}" IsFilterable="False" />
+                <telerik:GridViewDataColumn Header="客户名称" DataMemberBinding="{Binding CustomerName}" />
+                <telerik:GridViewDataColumn Header="海关编号" DataMemberBinding="{Binding DeclarationNumber}" />
+                <telerik:GridViewDataColumn Header="批准文号" DataMemberBinding="{Binding ApprovalNumber}" />
+                <telerik:GridViewDataColumn Header="提运单号" DataMemberBinding="{Binding BillNumber}" />
+                <telerik:GridViewDataColumn Header="航运工具" DataMemberBinding="{Binding Conveyance}" />
+                <telerik:GridViewDataColumn Header="航次号" DataMemberBinding="{Binding VoyageNumber}" />
+                <telerik:GridViewDataColumn Header="报关状态" DataMemberBinding="{Binding DeclarationStatus}" />
+                <telerik:GridViewDataColumn Header="洋山查验状态" DataMemberBinding="{Binding YSStatus}" />
+                <telerik:GridViewDataColumn Header="查验日期" DataMemberBinding="{Binding YSDate}" />
+            </telerikGridView:RadGridView.Columns>
+        </telerikGridView:RadGridView>
+    </Grid>
+</UserControl>
